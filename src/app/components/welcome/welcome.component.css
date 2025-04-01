@@ -1,0 +1,68 @@
+/* General Container for the Welcome Page */
+.welcome-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
+
+/* Left Section (70%): Background Image and Welcome Text */
+.left-section {
+    width: 70%;
+    background-image: url('/');
+    /* Replace with your background image URL */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+}
+
+.left-section h1,
+.left-section p {
+    color: white;
+}
+
+/* Right Section (30%): Buttons and Sign-up Text */
+.right-section {
+    width: 30%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Dark background */
+    padding: 30px;
+    text-align: center;
+    color: white;
+    border-radius: 0 10px 10px 0;
+}
+
+.right-section .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.right-section p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-size: 1.1rem;
+    padding: 10px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.8;
+}

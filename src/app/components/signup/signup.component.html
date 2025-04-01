@@ -1,0 +1,31 @@
+<div class="signup-container">
+    <div class="container">
+        <h2 class="text-center">Signup</h2>
+
+        <!-- Show error message if form is invalid -->
+        <span *ngIf="formSubmitted && signupForm.invalid"
+            class=" alert-danger text-center">
+            All fields are required.
+        </span>
+
+        <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control"
+                    [(ngModel)]="email" name="email" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control"
+                    [(ngModel)]="password" name="password" required />
+            </div>
+            <button class="btn btn-success btn-block">Signup</button>
+        </form>
+
+        <!-- Sign Up Link below -->
+        <div class="signup-link">
+            <p>Already have an account? <a routerLink="/login">Login
+                    here</a></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Task Management Dashboard</title>
+
+    </head>
+    <body>
+
+        <div class="container mt-4">
+            <h2 class="text-center">Task Management Dashboard</h2>
+
+            <!-- Project Creation Form -->
+            <div class="card p-4 my-4">
+                <h4>Create a New Project</h4>
+                <form id="projectForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Created By</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Project Manager</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Team Members</label>
+                            <input type="text" class="form-control"
+                                placeholder="Comma-separated names">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">End Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-3">Create
+                        Project</button>
+                </form>
+            </div>
+
+            <!-- Task Creation Form -->
+            <div class="card p-4 my-4">
+                <h4>Add Task to a Project</h4>
+                <form id="taskForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label">Task Title</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Assigned To</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Priority</label>
+                            <select class="form-select">
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Estimate (hours)</label>
+                            <input type="number" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Time Spent (hours)</label>
+                            <input type="number" class="form-control">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3">Add
+                        Task</button>
+                </form>
+            </div>
+
+            <!-- Project List -->
+            <div class="card p-4 my-4">
+                <h4>Project List</h4>
+                <table class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Project Manager</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Project 1</td>
+                            <td>John Doe</td>
+                            <td>2025-04-10</td>
+                            <td>2025-05-20</td>
+                            <td>
+                                <button
+                                    class="btn btn-primary btn-sm">View</button>
+                                <button
+                                    class="btn btn-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </body>
+</html>
