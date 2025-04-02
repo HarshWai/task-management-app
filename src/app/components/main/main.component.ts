@@ -27,6 +27,7 @@ export class MainComponent {
   loadProjects(): void {
     const storedProjects = localStorage.getItem('projects');
     this.projects = storedProjects ? JSON.parse(storedProjects) : [];
+
   }
 
   // Load tasks from localStorage
@@ -55,7 +56,11 @@ export class MainComponent {
   navigateToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
+  navigateToaddtask(): void {
+    this.router.navigate(['/addTask']);
+  }
   navigateToWelcome() {
+    localStorage.removeItem('loggedInUser');
     this.router.navigate(['/']);
   }
   // Delete a project

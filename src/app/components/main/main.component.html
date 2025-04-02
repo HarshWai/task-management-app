@@ -20,7 +20,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let project of projects">
+                <tr *ngFor="let project of projects"
+                    (click)="navigateToaddtask()">
                     <td class="text-center">{{ project.title }}</td>
                     <td class="text-center">{{ project.manager }}</td>
                     <td class="text-center">{{ project.startDate }}</td>

@@ -37,13 +37,19 @@ export class LoginComponent {
     } else if (existingUser.password !== this.password) {
       this.errorMessage = 'Invalid email or password. Please try again.';
     } else {
-      // ✅ Store the logged-in user's name in localStorage
-      localStorage.setItem('loggedInUser', JSON.stringify({ name: existingUser.name }));
+      // ✅ Store the full logged-in user details in localStorage
+      localStorage.setItem('loggedInUser', JSON.stringify({
+        name: existingUser.name,
+        email: existingUser.email,
+        loginTime: new Date().toISOString() // ✅ Store login timestamp
+      }));
 
+      console.log('User Logged In:', existingUser); // ✅ Log user details
       alert('Login successful!');
       this.router.navigate(['/main']);
     }
   }
-
-
 }
+
+
+
