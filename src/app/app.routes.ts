@@ -8,11 +8,14 @@ import { MainComponent } from './components/main/main.component';
 
 
 export const routes: Routes = [
-    { path: '', component: WelcomeComponent },
+    { path: 'welcome', component: WelcomeComponent },
+    { path: '', redirectTo: '/welcome', pathMatch: 'full' },
 
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent },
     { path: 'viewTask', component: ViewTaskComponent },
-    { path: 'main', component: MainComponent }
+    { path: 'main', component: MainComponent },
+    { path: 'view-task', component: ViewTaskComponent },
+    { path: '**', redirectTo: '/welcome' }
 ];

@@ -1,1 +1,45 @@
-<p>view-task works!</p>
+<div class="container mt-4">
+    <h2 class="text-center">Project Details</h2>
+
+    <div class="container border ">
+        <div class="  p-4 my-4">
+            <h4>Project Information</h4>
+
+            <label><strong>Title:</strong></label>
+            <input type="text" class="form-control mb-2"
+                [(ngModel)]="selectedProject.title" />
+
+            <label><strong>Description:</strong></label>
+            <input type="text" class="form-control mb-2"
+                [(ngModel)]="selectedProject.description" />
+
+            <label><strong>Project Manager:</strong></label>
+            <input type="text" class="form-control mb-2"
+                [(ngModel)]="selectedProject.manager" />
+
+            <label><strong>Start Date:</strong></label>
+            <input type="date" class="form-control mb-2"
+                [(ngModel)]="selectedProject.startDate" />
+
+            <label><strong>End Date:</strong></label>
+            <input type="date" class="form-control mb-3"
+                [(ngModel)]="selectedProject.endDate" />
+
+            <label class="form-label">Team Members</label>
+            <input type="text" class="form-control"
+                [(ngModel)]="selectedProject.teamMembers" name="teamMembers">
+        </div>
+        <div class="text-center mb-4">
+            <!-- Update Button -->
+            <button class="btn btn-success mx-2" (click)="updateProject()">Save
+                Changes</button>
+            <!-- Back Button -->
+            <button class="btn btn-secondary "
+                (click)="goBack()">Back</button>
+        </div>
+    </div>
+
+    <ng-template #noProjectFound>
+        <p class="text-center text-danger">No project found!</p>
+    </ng-template>
+</div>

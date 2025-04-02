@@ -35,6 +35,11 @@ export class MainComponent {
     this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
   }
 
+  viewProject(project: any): void {
+    localStorage.setItem('selectedProject', JSON.stringify(project)); // Store only the selected project
+    this.router.navigate(['/viewTask']); // Navigate to viewTask component
+  }
+
   loadUserName(): void {
     const storedUser = localStorage.getItem('loggedInUser'); // ✅ Get logged-in user
     if (storedUser) {
@@ -58,12 +63,6 @@ export class MainComponent {
     this.projects = this.projects.filter(project => project.id !== projectId);
     localStorage.setItem('projects', JSON.stringify(this.projects));
   }
-
-  // View a project (navigate to detailed view if implemented)
-  viewProject(project: any): void {
-    console.log('Viewing project:', project);
-  }
-
   // Delete a task
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
