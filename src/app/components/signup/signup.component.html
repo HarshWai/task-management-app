@@ -10,6 +10,9 @@
 
         <form (ngSubmit)="onSignup()" #signupForm="ngForm">
             <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" class="form-control"
+                    [(ngModel)]="name" required>
                 <label for="email">Email</label>
                 <input type="email" id="email" class="form-control"
                     [(ngModel)]="email" name="email" required />

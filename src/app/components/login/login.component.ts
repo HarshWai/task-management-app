@@ -18,29 +18,32 @@ export class LoginComponent {
   constructor(private router: Router) { }
 
   onLogin(): void {
+    this.errorMessage = ''; // Clear previous errors
+    this.showSignupButton = false; // Hide signup button initially
+
     let users = JSON.parse(localStorage.getItem('users') || '[]');
 
-    if (users.length === 0) {
-
-      this.showSignupButton = true;
+    if (!users.length) {
       this.errorMessage = 'No users found. Please sign up first.';
+      this.showSignupButton = true;
       return;
     }
 
     let existingUser = users.find((user: any) => user.email === this.email);
 
     if (!existingUser) {
-
-      this.showSignupButton = true;
       this.errorMessage = 'User not found. Please sign up first.';
+      this.showSignupButton = true;
     } else if (existingUser.password !== this.password) {
-
       this.errorMessage = 'Invalid email or password. Please try again.';
     } else {
+      // ✅ Store the logged-in user's name in localStorage
+      localStorage.setItem('loggedInUser', JSON.stringify({ name: existingUser.name }));
 
       alert('Login successful!');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/main']);
     }
   }
+
 
 }
