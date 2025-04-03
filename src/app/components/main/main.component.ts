@@ -1,11 +1,11 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [FormsModule, NgFor],
+  imports: [FormsModule, NgFor, NgIf],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -25,18 +25,30 @@ export class MainComponent {
 
   }
 
-  // Load projects from localStorage
+
   loadProjects(): void {
     const storedProjects = localStorage.getItem('projects');
-    this.projects = storedProjects ? JSON.parse(storedProjects) : [];
+    const storedUser = localStorage.getItem('loggedInUser');
 
+    const user = JSON.parse(storedUser || '{}');
+    const allProjects: any[] = JSON.parse(storedProjects || '[]');
+
+
+    this.projects = allProjects.filter(
+      project => project.createdBy.trim().toLowerCase() === user.name.trim().toLowerCase()
+    );
+
+    console.warn(this.projects);
+    console.log('Loaded projects for logged-in user:', this.projects);
   }
+
+
 
   selectProject(projectId: number): void {
     localStorage.setItem('selectedProjectId', projectId.toString());
     this.router.navigate(['/task-list']);
   }
-  // Load tasks from localStorage
+
   loadTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
     this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
@@ -44,11 +56,11 @@ export class MainComponent {
 
   getStatusClass(status: string): string {
     if (status === 'Pending') {
-      return 'table-danger';
+      return 'text-danger';
     } else if (status === 'In Progress') {
-      return 'table-warning';
+      return 'text-warning';
     } else if (status === 'Completed') {
-      return 'table-success';
+      return 'text-success';
     } else {
       return '';
     }
@@ -60,14 +72,14 @@ export class MainComponent {
 
   viewProject(project: any): void {
     localStorage.setItem('selectedProject', JSON.stringify(project)); // Store only the selected project
-    this.router.navigate(['/viewTask']); // Navigate to viewTask component
+    this.router.navigate(['/viewTask']);
   }
 
   loadUserName(): void {
-    const storedUser = localStorage.getItem('loggedInUser'); // ✅ Get logged-in user
+    const storedUser = localStorage.getItem('loggedInUser'); // 
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      this.userName = user.name || 'Guest'; // ✅ Set username properly
+      this.userName = user.name || 'Guest'; // 
     } else {
       this.userName = 'Guest'; // Default if no user is logged in
     }

@@ -37,6 +37,6 @@ export class EditTaskComponent {
     localStorage.removeItem('selectedTask');
 
     alert('Task updated successfully!');
-    this.router.navigate(['/task-list']);
+    this.router.navigate(['/task-list/:id']);
   }
 }
