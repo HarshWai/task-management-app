@@ -1,0 +1,45 @@
+ <!-- Task List Table -->
+<div class="container-fluid mt-4">
+    <!-- Task List Table -->
+    <h3 class="mt-4">Tasks</h3>
+    <div class="table-container">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Estimate (hrs)</th>
+                    <th>Time Spent (hrs)</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let task of tasks"
+                    [ngClass]="getStatusClass(task.status)"
+                    [ngClass]="getStatusClass(task.status)">
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.assignedTo }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.estimate }}</td>
+                    <td>{{ task.timeSpent }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"
+                            (click)="editTask(task)">Edit</button>
+                        <button class="btn btn-danger btn-sm ms-2"
+                            (click)="deleteTask(task.id)">Delete</button>
+                    </td>
+                </tr>
+                <button class="btn btn-primary mt-3"
+                    (click)="navigateToAddTask()">Add Task</button>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <a routerLink="/main"><button class="btn btn-secondary">Home
+                page</button></a>
+    </div>
+</div>

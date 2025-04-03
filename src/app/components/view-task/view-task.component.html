@@ -13,6 +13,10 @@
             <input type="text" class="form-control mb-2"
                 [(ngModel)]="selectedProject.description" />
 
+            <label><strong>Created by:</strong></label>
+            <input type="text" class="form-control mb-2"
+                [(ngModel)]="selectedProject.createdBy" />
+
             <label><strong>Project Manager:</strong></label>
             <input type="text" class="form-control mb-2"
                 [(ngModel)]="selectedProject.manager" />
@@ -28,6 +32,10 @@
             <label class="form-label">Team Members</label>
             <input type="text" class="form-control"
                 [(ngModel)]="selectedProject.teamMembers" name="teamMembers">
+
+            <label><strong>Due Date:</strong></label>
+            <input type="date" class="form-control mb-3"
+                [(ngModel)]="selectedProject.dueDate" />
         </div>
         <div class="text-center mb-4">
             <!-- Update Button -->

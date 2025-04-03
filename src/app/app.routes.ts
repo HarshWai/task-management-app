@@ -5,7 +5,10 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { MainComponent } from './components/main/main.component';
-import { AddtaskComponent } from './components/addtask/addtask.component';
+import { AddTaskComponent } from './components/addtask/addtask.component';
+import { TaskListComponent } from './components/task-list/task-list.component';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
+
 
 
 export const routes: Routes = [
@@ -17,6 +20,8 @@ export const routes: Routes = [
     { path: 'viewTask', component: ViewTaskComponent },
     { path: 'main', component: MainComponent },
     { path: 'view-task', component: ViewTaskComponent },
-    { path: 'addTask', component: AddtaskComponent },
+    { path: 'addTask', component: AddTaskComponent },
+    { path: 'task-list/:id', component: TaskListComponent },
+    { path: 'edit-task', component: EditTaskComponent },
     { path: '**', redirectTo: '/welcome' }
 ];

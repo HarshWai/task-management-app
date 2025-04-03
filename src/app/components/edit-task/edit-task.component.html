@@ -1,6 +1,6 @@
 <div class="container mt-4">
-    <h2 class="text-center">{{ task.id ? 'Edit Task' : 'Create Task' }}</h2>
-    <form (ngSubmit)="saveTask()" class="p-4 border rounded shadow">
+    <h2 class="text-center">Edit Task</h2>
+    <form (ngSubmit)="updateTask()" class="p-4 border rounded shadow">
         <div class="mb-3">
             <label class="form-label">Task Title</label>
             <input type="text" class="form-control" [(ngModel)]="task.title"
@@ -35,8 +35,6 @@
             <input type="date" class="form-control" [(ngModel)]="task.deadline"
                 name="deadline" required>
         </div>
-        <button type="submit" class="btn btn-primary">
-            {{ task.id ? 'Update Task' : 'Add Task' }}
-        </button>
+        <button type="submit" class="btn btn-primary">Update Task</button>
     </form>
 </div>

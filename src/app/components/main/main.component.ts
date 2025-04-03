@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [FormsModule, NgFor, NgClass],
+  imports: [FormsModule, NgFor],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -13,6 +13,8 @@ export class MainComponent {
   projects: any[] = [];
   tasks: any[] = [];
   userName: any;
+  loggedInUser: string | null = null;
+
 
   constructor(private router: Router) { }
 
@@ -30,10 +32,30 @@ export class MainComponent {
 
   }
 
+  selectProject(projectId: number): void {
+    localStorage.setItem('selectedProjectId', projectId.toString());
+    this.router.navigate(['/task-list']);
+  }
   // Load tasks from localStorage
   loadTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
     this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+  }
+
+  getStatusClass(status: string): string {
+    if (status === 'Pending') {
+      return 'table-danger';
+    } else if (status === 'In Progress') {
+      return 'table-warning';
+    } else if (status === 'Completed') {
+      return 'table-success';
+    } else {
+      return '';
+    }
+  }
+  editTask(task: any): void {
+    localStorage.setItem('selectedTask', JSON.stringify(task));
+    this.router.navigate(['/edit-Task']);
   }
 
   viewProject(project: any): void {
@@ -56,8 +78,8 @@ export class MainComponent {
   navigateToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
-  navigateToaddtask(): void {
-    this.router.navigate(['/addTask']);
+  navigateToaddtask(projectId: number): void {
+    this.router.navigate(['/task-list', projectId]);
   }
   navigateToWelcome() {
     localStorage.removeItem('loggedInUser');
@@ -74,8 +96,9 @@ export class MainComponent {
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
-  // Edit a task (navigate to edit component if implemented)
-  editTask(task: any): void {
-    console.log('Editing task:', task);
+  navigateToAddTask(): void {
+    this.router.navigate(['/add-task']);
   }
+
+
 }

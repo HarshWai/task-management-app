@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-task',
-  imports: [NgIf, FormsModule],
+  imports: [FormsModule],
   templateUrl: './view-Task.component.html',
   styleUrls: ['./view-Task.component.css']
 })

@@ -8,73 +8,58 @@
     <!-- Project List Table -->
     <div class="card p-4 my-4">
         <h4>Project List</h4>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Project Manager</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Team Member</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let project of projects"
-                    (click)="navigateToaddtask()">
-                    <td class="text-center">{{ project.title }}</td>
-                    <td class="text-center">{{ project.manager }}</td>
-                    <td class="text-center">{{ project.startDate }}</td>
-                    <td class="text-center">{{ project.endDate }}</td>
-                    <td class="text-center">{{ project.teamMembers }}</td>
+        <div class="table-container">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Created By</th>
+                        <th>Project Manager</th>
+                        <th>Team Member</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let project of projects">
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.title }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.description }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.createdBy }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.manager }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.teamMembers }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.startDate }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.endDate }}</td>
 
-                    <td class="text-center">
-                        <button class="btn btn-primary btn-sm mx-3 btn-view"
-                            (click)="viewProject(project)">view</button>
-                        <button class="btn btn-danger btn-sm "
-                            (click)="deleteProject(project.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        <td class="text-center">
+                            <button class="btn btn-primary btn-sm mx-3 btn-view"
+                                (click)="viewProject(project)">view</button>
+                            <button class="btn btn-danger btn-sm "
+                                (click)="deleteProject(project.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="text-center">
         <button class="btn btn-success" (click)="navigateToDashboard()">Create
             Project</button>
-    </div>
-
-    <!-- Task List Table -->
-    <div class="card p-4 my-4">
-        <h4>Task List</h4>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Task Title</th>
-                    <th>Assigned To</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let task of tasks">
-                    <td class="text-center">{{ task.title }}</td>
-                    <td class="text-center">{{ task.assignedTo }}</td>
-                    <td class="text-center">
-                        <span [ngClass]="{
-                                'badge bg-danger': task.status === 'High',
-                                'badge bg-warning': task.status === 'Medium',
-                                'badge bg-success': task.status === 'Low'
-                            }">{{ task.status }}</span>
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-primary btn-sm"
-                            (click)="editTask(task)">Edit</button>
-                        <button class="btn btn-danger btn-sm"
-                            (click)="deleteTask(task.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
     <!-- Create Project Button -->

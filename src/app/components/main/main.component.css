@@ -79,6 +79,25 @@ body {
     background-color: #1e7e34;
 }
 
+.table-container {
+    max-height: 300px;
+    /* Set the desired height */
+    overflow-y: auto;
+    /* Enable vertical scrollbar */
+    /* border: 1px solid #ddd; */
+    /* Optional: Add border */
+    border: none;
+}
+
+/* Make table header sticky */
+.table-container table thead {
+    position: sticky;
+    top: 0;
+    background: #212529;
+    /* Dark background for sticky header */
+    /* color: white; */
+    z-index: 1;
+}
 
 /* Responsive Styling */
 @media (max-width: 768px) {

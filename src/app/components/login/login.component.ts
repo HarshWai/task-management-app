@@ -18,16 +18,29 @@ export class LoginComponent {
   constructor(private router: Router) { }
 
   onLogin(): void {
-    this.errorMessage = ''; // Clear previous errors
-    this.showSignupButton = false; // Hide signup button initially
+    this.errorMessage = '';
+    this.showSignupButton = false;
 
-    let users = JSON.parse(localStorage.getItem('users') || '[]');
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find((u: any) => u.email === this.email && u.password === this.password);
+
+    if (user) {
+      localStorage.setItem('loggedInUser', JSON.stringify({
+        name: user.name,
+        email: user.email,
+        loginTime: new Date().toISOString()
+      }));
+      console.log('User Logged In:', user);
+      this.router.navigate(['/main']);
+    } else {
+      this.errorMessage = 'Invalid email or password. Please try again.';
+    }
 
     if (!users.length) {
       this.errorMessage = 'No users found. Please sign up first.';
       this.showSignupButton = true;
-      return;
     }
+
 
     let existingUser = users.find((user: any) => user.email === this.email);
 
@@ -37,15 +50,15 @@ export class LoginComponent {
     } else if (existingUser.password !== this.password) {
       this.errorMessage = 'Invalid email or password. Please try again.';
     } else {
-      // ✅ Store the full logged-in user details in localStorage
+
       localStorage.setItem('loggedInUser', JSON.stringify({
         name: existingUser.name,
         email: existingUser.email,
-        loginTime: new Date().toISOString() // ✅ Store login timestamp
+        loginTime: new Date().toISOString()
       }));
 
-      console.log('User Logged In:', existingUser); // ✅ Log user details
-      alert('Login successful!');
+      console.log('User Logged In:', existingUser);
+
       this.router.navigate(['/main']);
     }
   }
