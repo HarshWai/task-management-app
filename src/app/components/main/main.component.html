@@ -43,6 +43,7 @@
                 <tr class="text-center">
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Status</th>
                     <th>Created By</th>
                     <th>Project Manager</th>
                     <th>Team Member</th>
@@ -61,12 +62,16 @@
                         <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.description }}</td>
+                        <td (click)="navigateToaddtask(project.id)"
+                            [ngClass]="getStatusClass(project.status)">{{
+                            project.status }}</td>
                         <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.createdBy }}</td>
                         <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.manager }}</td>
+
                         <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.teamMembers }}</td>

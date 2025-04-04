@@ -17,12 +17,14 @@ export class DashboardComponent {
   project = {
     title: '',
     description: '',
+    status: '',
     createdBy: '',
     manager: '',
     teamMembers: '',
     startDate: '',
     endDate: '',
-    dueDate: ''
+    dueDate: '',
+
   };
 
   constructor(private router: Router) {
@@ -79,7 +81,7 @@ export class DashboardComponent {
 
   // Reset form
   resetProjectForm() {
-    this.project = { title: '', description: '', createdBy: '', manager: '', teamMembers: '', startDate: '', endDate: '', dueDate: '' };
+    this.project = { title: '', description: '', status: '', createdBy: '', manager: '', teamMembers: '', startDate: '', endDate: '', dueDate: '' };
   }
 
 }

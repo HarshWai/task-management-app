@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [FormsModule, NgFor, NgIf, RouterLink],
+  imports: [FormsModule, NgFor, NgIf, RouterLink, NgClass],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -78,14 +78,15 @@ export class MainComponent {
 
 
   getStatusClass(status: string): string {
-    if (status === 'Pending') {
-      return 'text-danger';
-    } else if (status === 'In Progress') {
-      return 'text-warning';
-    } else if (status === 'Completed') {
-      return 'text-success';
-    } else {
-      return '';
+    switch (status) {
+      case 'Pending':
+        return 'text-danger';
+      case 'In Progress':
+        return 'text-warning';
+      case 'Completed':
+        return 'text-success';
+      default:
+        return '';
     }
   }
   editTask(task: any): void {
