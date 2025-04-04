@@ -1,46 +1,58 @@
 <div class="container mt-4">
     <h2 class="text-center">{{ task.id ? 'Edit Task' : 'Create Task' }}</h2>
-    <form (ngSubmit)="saveTask()" class="p-4 border rounded shadow">
-        <div class="mb-3">
-            <label class="form-label">Task Title</label>
-            <input type="text" class="form-control" [(ngModel)]="task.title"
-                name="title" required placeholder="Enter task title">
+
+    <form (ngSubmit)="saveTask()" class="p-4 border rounded shadow bg-white">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Task Title</label>
+                <input type="text" class="form-control" [(ngModel)]="task.title"
+                    name="title" required placeholder="Enter task title">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Assigned To</label>
+                <input type="text" class="form-control"
+                    [(ngModel)]="task.assignedTo" name="assignedTo" required
+                    placeholder="Enter assignee name">
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Assigned To</label>
-            <input type="text" class="form-control"
-                [(ngModel)]="task.assignedTo" name="assignedTo" required
-                placeholder="Enter assignee name">
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Status</label>
+                <select class="form-select" [(ngModel)]="task.status"
+                    name="status" required>
+                    <option value>Select status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Estimated Time (hrs)</label>
+                <input type="number" class="form-control"
+                    [(ngModel)]="task.estimate" name="estimate" required
+                    placeholder="Enter estimated time">
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Status</label>
-            <select class="form-select" [(ngModel)]="task.status" name="status"
-                required>
-                <option value=" ">Select status</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-            </select>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-6">
+                <label class="form-label">Time Spent (hrs)</label>
+                <input type="number" class="form-control"
+                    [(ngModel)]="task.timeSpent" name="timeSpent" required
+                    placeholder="Enter time spent">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Deadline</label>
+                <input type="date" class="form-control"
+                    [(ngModel)]="task.deadline" name="deadline" required>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Estimated Time (hrs)</label>
-            <input type="number" class="form-control"
-                [(ngModel)]="task.estimate" name="estimate" required
-                placeholder="Enter estimated time">
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">
+                {{ task.id ? 'Update Task' : 'Add Task' }}
+            </button>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Time Spent (hrs)</label>
-            <input type="number" class="form-control"
-                [(ngModel)]="task.timeSpent" name="timeSpent" required
-                placeholder="Enter time spent">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Deadline</label>
-            <input type="date" class="form-control" [(ngModel)]="task.deadline"
-                name="deadline" required>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            {{ task.id ? 'Update Task' : 'Add Task' }}
-        </button>
     </form>
 </div>

@@ -109,6 +109,22 @@ export class MainComponent {
     }
   }
 
+  getProjectDueDays(endDate: string): number {
+    if (!endDate) return 0; // If no end date is provided, return 0
+
+    const today = new Date(); // Get today's date
+    const dueDate = new Date(endDate); // Convert project end date to Date object
+
+    // Calculate the difference in time (milliseconds)
+    const timeDifference = dueDate.getTime() - today.getTime();
+
+    // Convert milliseconds to days
+    const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+    // Return 0 if the project deadline has passed
+    return daysRemaining >= 0 ? daysRemaining : 0;
+  }
+
 
   // Navigate to dashboard component
   navigateToDashboard(): void {

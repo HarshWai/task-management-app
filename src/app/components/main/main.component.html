@@ -48,6 +48,7 @@
                     <th>Team Member</th>
                     <th>Start Date</th>
                     <th>End Date</th>
+                    <th>Due Days</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -75,13 +76,16 @@
                         <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.endDate }}</td>
+                        <td>{{ getProjectDueDays(project.endDate) }} days</td>
 
                         <td>
-                            <button
-                                class="btn btn-primary btn-sm mx-3 btn-view"
-                                (click)="viewProject(project)">Edit</button>
-                            <button class="btn btn-danger btn-sm "
-                                (click)="deleteProject(project.id)">Delete</button>
+                            <div
+                                class="d-grid gap-2 d-md-flex justify-content-md-center">
+                                <button class="btn btn-primary btn-sm"
+                                    (click)="viewProject(project)">Edit</button>
+                                <button class="btn btn-danger btn-sm"
+                                    (click)="deleteProject(project.id)">Delete</button>
+                            </div>
                         </td>
                     </tr>
                 </ng-container>
