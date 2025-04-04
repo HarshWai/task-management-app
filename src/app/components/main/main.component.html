@@ -8,11 +8,11 @@
 
     <!-- Project List Table -->
     <div class="card p-4 my-4">
-        <h4>Project List</h4>
+        <h4 class="text-center">Project List</h4>
 
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped mt-4">
             <thead class="table-dark">
-                <tr>
+                <tr class="text-center">
                     <th>Title</th>
                     <th>Description</th>
                     <th>Created By</th>
@@ -25,30 +25,30 @@
             </thead>
             <tbody>
                 <ng-container *ngIf="projects.length > 0">
-                    <tr *ngFor="let project of projects">
-                        <td class="text-center"
+                    <tr *ngFor="let project of projects" class="text-center">
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.title }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.description }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.createdBy }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.manager }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.teamMembers }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.startDate }}</td>
-                        <td class="text-center"
+                        <td
                             (click)="navigateToaddtask(project.id)">{{
                             project.endDate }}</td>
 
-                        <td class="text-center">
+                        <td>
                             <button
                                 class="btn btn-primary btn-sm mx-3 btn-view"
                                 (click)="viewProject(project)">Edit</button>
@@ -65,11 +65,12 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-center">
+            <button class="btn btn-success"
+                (click)="navigateToDashboard()">Create
+                Project</button>
+        </div>
 
-    </div>
-    <div class="text-center">
-        <button class="btn btn-success" (click)="navigateToDashboard()">Create
-            Project</button>
     </div>
 
     <!-- Create Project Button -->

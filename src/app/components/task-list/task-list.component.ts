@@ -57,11 +57,11 @@ export class TaskListComponent {
   getStatusClass(status: string): string {
     switch (status) {
       case 'Pending':
-        return 'table-danger';
+        return 'text-danger';
       case 'In Progress':
-        return 'table-warning';
+        return 'text-warning';
       case 'Completed':
-        return 'table-success';
+        return 'text-success';
       default:
         return '';
     }

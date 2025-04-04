@@ -1,11 +1,11 @@
  <!-- Task List Table -->
 <div class="container-fluid mt-4">
     <!-- Task List Table -->
-    <h3 class="mt-4">Tasks</h3>
-    <div class="table-container">
-        <table class="table table-bordered">
+    <div class=" card p-4 my-4">
+        <h3 class="mt-4 text-center">Project Tasks List</h3>
+        <table class="table table-bordered table-striped mt-4">
             <thead class="table-dark">
-                <tr>
+                <tr class="text-center">
                     <th>Title</th>
                     <th>Assigned To</th>
                     <th>Status</th>
@@ -17,12 +17,13 @@
             </thead>
             <tbody>
                 <tr
-                    *ngFor="let task of tasks"
-                    [ngClass]="getStatusClass(task.status)"
-                    [ngClass]="getStatusClass(task.status)">
+                    *ngFor="let task of tasks" class="text-center">
                     <td>{{ task.title }}</td>
                     <td>{{ task.assignedTo }}</td>
-                    <td>{{ task.status }}</td>
+                    <td
+                        [ngClass]="getStatusClass(task.status)"
+                        [ngClass]="getStatusClass(task.status)">{{ task.status
+                        }}</td>
                     <td>{{ task.estimate }}</td>
                     <td>{{ task.timeSpent }}</td>
                     <td>{{ task.deadline }}</td>
@@ -33,13 +34,18 @@
                             (click)="deleteTask(task.id)">Delete</button>
                     </td>
                 </tr>
-                <button class="btn btn-primary mt-3"
-                    (click)="navigateToAddTask()">Add Task</button>
+
             </tbody>
         </table>
+        <div class="text-center">
+            <button class="btn btn-primary mt-3"
+                (click)="navigateToAddTask()">Add Task</button>
+        </div>
     </div>
+
     <div class="text-center">
         <a routerLink="/main"><button class="btn btn-secondary">Home
                 page</button></a>
     </div>
+
 </div>
