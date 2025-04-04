@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
+
   providedIn: 'root'
 })
 export class UserService {
-
+  userName: any;
+  router: any;
   constructor() { }
 
   // Method to login user and store in localStorage
@@ -32,6 +35,22 @@ export class UserService {
 
   // Method to log out the user
   logout(): void {
-    localStorage.removeItem('user'); // Clear user data from localStorage
+    localStorage.removeItem('user'); 
   }
+
+  loadUserName(): void {
+    const storedUser = localStorage.getItem('loggedInUser'); 
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      this.userName = user.name || 'Guest'; 
+    } else {
+      this.userName = 'Guest'; 
+    }
+  }
+
+  navigateToWelcome() {
+    localStorage.removeItem('loggedInUser');
+    this.router.navigate(['/']);
+  }
+
 }

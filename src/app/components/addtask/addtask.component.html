@@ -4,17 +4,19 @@
         <div class="mb-3">
             <label class="form-label">Task Title</label>
             <input type="text" class="form-control" [(ngModel)]="task.title"
-                name="title" required>
+                name="title" required placeholder="Enter task title">
         </div>
         <div class="mb-3">
             <label class="form-label">Assigned To</label>
             <input type="text" class="form-control"
-                [(ngModel)]="task.assignedTo" name="assignedTo" required>
+                [(ngModel)]="task.assignedTo" name="assignedTo" required
+                placeholder="Enter assignee name">
         </div>
         <div class="mb-3">
             <label class="form-label">Status</label>
             <select class="form-select" [(ngModel)]="task.status" name="status"
                 required>
+                <option value=" ">Select status</option>
                 <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
@@ -23,12 +25,14 @@
         <div class="mb-3">
             <label class="form-label">Estimated Time (hrs)</label>
             <input type="number" class="form-control"
-                [(ngModel)]="task.estimate" name="estimate" required>
+                [(ngModel)]="task.estimate" name="estimate" required
+                placeholder="Enter estimated time">
         </div>
         <div class="mb-3">
             <label class="form-label">Time Spent (hrs)</label>
             <input type="number" class="form-control"
-                [(ngModel)]="task.timeSpent" name="timeSpent" required>
+                [(ngModel)]="task.timeSpent" name="timeSpent" required
+                placeholder="Enter time spent">
         </div>
         <div class="mb-3">
             <label class="form-label">Deadline</label>

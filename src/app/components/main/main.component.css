@@ -17,6 +17,18 @@ body {
     /* transition: transform 0.2s ease-in-out; */
 }
 
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.dropdown-menu {
+    min-width: 100px;
+    text-align: center;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
 
 .table {
     background: #fff;

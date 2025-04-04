@@ -1,5 +1,40 @@
  <!-- Task List Table -->
 <div class="container-fluid mt-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-white" href="#">Task
+                Management</a>
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" routerLink="/main">Home</a>
+                    </li>
+
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="dropdown">
+                        <button class="btn btn-dark dropdown-toggle"
+                            type="button"
+                            id="userDropdown" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{userName}}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="userDropdown">
+                            <li><button class="dropdown-item text-danger"
+                                    (click)="navbar.navigateToWelcome()">Logout</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- Task List Table -->
     <div class=" card p-4 my-4">
         <h3 class="mt-4 text-center">Project Tasks List</h3>

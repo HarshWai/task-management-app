@@ -1,11 +1,11 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main',
-  imports: [FormsModule, NgFor, NgIf],
+  imports: [FormsModule, NgFor, NgIf, RouterLink],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
@@ -47,10 +47,8 @@ export class MainComponent {
       project.createdBy?.trim().toLowerCase() === user.name.trim().toLowerCase()
     );
 
-    console.warn('Filtered Projects:', this.projects);
+    // console.warn('Filtered Projects:', this.projects);
   }
-
-
 
 
   selectProject(projectId: number): void {
@@ -63,8 +61,8 @@ export class MainComponent {
     const storedTasks = localStorage.getItem('tasks');
     const selectedProjectId = localStorage.getItem('selectedProjectId');
 
-    console.log('Stored Tasks:', storedTasks);
-    console.log('Selected Project ID:', selectedProjectId);
+    // console.log('Stored Tasks:', storedTasks);
+    // console.log('Selected Project ID:', selectedProjectId);
 
     if (!storedTasks || !selectedProjectId) {
       this.tasks = [];
@@ -105,6 +103,7 @@ export class MainComponent {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       this.userName = user.name || 'Guest'; // 
+      console.log("User Name: main", this.userName); // Debugging line
     } else {
       this.userName = 'Guest'; // Default if no user is logged in
     }
