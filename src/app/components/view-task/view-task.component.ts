@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-view-task',
   imports: [FormsModule],
-  templateUrl: './view-Task.component.html',
-  styleUrls: ['./view-Task.component.css']
+  templateUrl: './view-task.component.html',
+  styleUrls: ['./view-task.component.css']
 })
 export class ViewTaskComponent {
   selectedProject: any;
