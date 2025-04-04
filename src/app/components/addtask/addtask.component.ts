@@ -29,20 +29,35 @@ export class AddTaskComponent {
       this.task = JSON.parse(storedTask);
     }
 
-    // Assign task to the logged-in user and selected project
+    // ✅ Ensure correct project and user are assigned
     this.task.user = localStorage.getItem('loggedInUser');
-    this.task.projectId = parseInt(localStorage.getItem('selectedProjectId') || '0', 10);
+    const storedProjectId = localStorage.getItem('selectedProjectId');
+
+    if (!storedProjectId || isNaN(parseInt(storedProjectId, 10))) {
+      console.error("🚨 No valid project selected.");
+      alert("Please select a project before adding a task.");
+      return;
+    }
+
+    this.task.projectId = parseInt(storedProjectId, 10);
+    console.log("📌 Task assigned to Project ID:", this.task.projectId);
   }
 
   saveTask(): void {
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
+    if (!this.task.projectId || isNaN(this.task.projectId)) {
+      console.error("🚨 No valid project selected when saving task.");
+      alert("Please select a valid project before adding a task.");
+      return;
+    }
+
     if (this.task.id) {
       // ✅ Update existing task
       tasks = tasks.map((t: any) => (t.id === this.task.id ? this.task : t));
     } else {
-      // ✅ Add new task
-      this.task.id = new Date().getTime(); // Assign a unique ID
+      // ✅ Assign a unique ID and add new task
+      this.task.id = new Date().getTime();
       tasks.push(this.task);
     }
 
@@ -51,6 +66,6 @@ export class AddTaskComponent {
 
     alert(this.task.id ? 'Task updated successfully!' : 'Task added successfully!');
 
-    this.router.navigate(['/task-list/:id']); // Redirect to task list
+    this.router.navigate(['/task-list', this.task.projectId]); // ✅ Redirect to correct task list
   }
 }

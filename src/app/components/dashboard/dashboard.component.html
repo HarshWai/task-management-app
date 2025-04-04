@@ -1,6 +1,6 @@
 
 <div class="container mt-4">
-    <h2 class="text-center">Task Management Dashboard</h2>
+    <h2 class="text-center">Add Project Details</h2>
 
     <!-- Project Creation Form -->
     <div class="card p-4 my-4">
@@ -10,55 +10,54 @@
                 <div class="col-md-6">
                     <label class="form-label">Title</label>
                     <input type="text" class="form-control"
-                        [(ngModel)]="project.title" name="title" required>
+                        [(ngModel)]="project.title" name="title" required
+                        placeholder="Enter project title">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Description</label>
                     <input type="text" class="form-control"
-                        [(ngModel)]="project.description" name="description">
+                        [(ngModel)]="project.description" name="description"
+                        required placeholder="Enter project description">
                 </div>
             </div>
 
             <div class="row mt-3">
-                <div class="col-md-4">
-                    <label class="form-label">Created By</label>
-                    <input type="text" class="form-control"
-                        [(ngModel)]="project.createdBy" name="createdBy">
-                </div>
-                <div class="col-md-4">
+
+                <div class="col-md-6">
                     <label class="form-label">Project Manager</label>
                     <input type="text" class="form-control"
-                        [(ngModel)]="project.manager" name="manager" required>
+                        [(ngModel)]="project.manager" name="manager" required
+                        placeholder="Enter project manager name">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label class="form-label">Team Members</label>
                     <input type="text" class="form-control"
-                        [(ngModel)]="project.teamMembers" name="teamMembers">
+                        [(ngModel)]="project.teamMembers" name="teamMembers"
+                        required
+                        placeholder="Enter team members names">
                 </div>
             </div>
 
             <div class="row mt-3">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label class="form-label">Start Date</label>
                     <input type="date" class="form-control"
                         [(ngModel)]="project.startDate" name="startDate"
                         required>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <label class="form-label">End Date</label>
                     <input type="date" class="form-control"
                         [(ngModel)]="project.endDate" name="endDate" required>
                 </div>
-                <div class="col-md-4">
-                    <label class="form-label">Due Date</label>
-                    <input type="date" class="form-control"
-                        [(ngModel)]="project.dueDate" name="dueDate">
-                </div>
+
             </div>
 
-            <button type="submit"
-                class="btn btn-primary mt-3">Create
-                Project</button>
+            <div class="text-center mt-4">
+                <button type="submit"
+                    class="btn btn-primary mt-3">Create
+                    Project</button>
+            </div>
         </form>
     </div>
 

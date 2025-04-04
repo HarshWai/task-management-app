@@ -30,29 +30,54 @@ export class MainComponent {
     const storedProjects = localStorage.getItem('projects');
     const storedUser = localStorage.getItem('loggedInUser');
 
-    const user = JSON.parse(storedUser || '{}');
-    const allProjects: any[] = JSON.parse(storedProjects || '[]');
+    if (!storedProjects || !storedUser) {
+      this.projects = []; // If no projects or user data, show empty array
+      return;
+    }
 
+    const user = JSON.parse(storedUser);
+    const allProjects: any[] = JSON.parse(storedProjects);
 
-    this.projects = allProjects.filter(
-      project => project.createdBy.trim().toLowerCase() === user.name.trim().toLowerCase()
+    if (!user.name) {
+      this.projects = [];
+      return;
+    }
+
+    this.projects = allProjects.filter(project =>
+      project.createdBy?.trim().toLowerCase() === user.name.trim().toLowerCase()
     );
 
-    console.warn(this.projects);
-    console.log('Loaded projects for logged-in user:', this.projects);
+    console.warn('Filtered Projects:', this.projects);
   }
+
 
 
 
   selectProject(projectId: number): void {
     localStorage.setItem('selectedProjectId', projectId.toString());
-    this.router.navigate(['/task-list']);
+    // this.loadTasks();
+    this.router.navigate(['/task-list', projectId]);
   }
 
   loadTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
-    this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+    const selectedProjectId = localStorage.getItem('selectedProjectId');
+
+    console.log('Stored Tasks:', storedTasks);
+    console.log('Selected Project ID:', selectedProjectId);
+
+    if (!storedTasks || !selectedProjectId) {
+      this.tasks = [];
+      return;
+    }
+
+    const allTasks: any[] = JSON.parse(storedTasks);
+    this.tasks = allTasks.filter(task => task.projectId === parseInt(selectedProjectId, 10));
+
+    console.warn('Filtered Tasks for Project:', this.tasks);
   }
+
+
 
   getStatusClass(status: string): string {
     if (status === 'Pending') {
@@ -91,6 +116,7 @@ export class MainComponent {
     this.router.navigate(['/dashboard']);
   }
   navigateToaddtask(projectId: number): void {
+    localStorage.setItem('selectedProjectId', projectId.toString());
     this.router.navigate(['/task-list', projectId]);
   }
   navigateToWelcome() {

@@ -1,7 +1,7 @@
 import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -13,13 +13,21 @@ export class TaskListComponent {
   tasks: any[] = [];
   selectedProjectId: number | null = null;
   loggedInUser: string | null = null;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadSelectedProject();
-    this.loadTasks();
+    this.route.paramMap.subscribe(params => {
+      this.selectedProjectId = Number(params.get('id'));
+      console.log('Project ID from URL:', this.selectedProjectId); // Debugging log
+
+      // ✅ Update localStorage with the correct project ID
+      localStorage.setItem('selectedProjectId', this.selectedProjectId.toString());
+
+      this.loadTasks();
+    });
+
+
     window.addEventListener('storage', () => this.loadTasks());
-    this.loadUserData();
   }
   loadUserData(): void {
     this.loggedInUser = localStorage.getItem('loggedInUser');
@@ -32,8 +40,18 @@ export class TaskListComponent {
   // Load tasks from localStorage
   loadTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
-    const allTasks = storedTasks ? JSON.parse(storedTasks) : [];
-    this.tasks = storedTasks ? JSON.parse(storedTasks) : [];
+    console.log('Stored Tasks:', storedTasks); // Debugging log
+    console.log('Selected Project ID:', this.selectedProjectId); // Debugging log
+
+    if (!storedTasks || !this.selectedProjectId) {
+      this.tasks = [];
+      return;
+    }
+
+    const allTasks: any[] = JSON.parse(storedTasks);
+    this.tasks = allTasks.filter(task => task.projectId === this.selectedProjectId);
+
+    console.log('Filtered Tasks:', this.tasks); // Debugging log
   }
 
   getStatusClass(status: string): string {

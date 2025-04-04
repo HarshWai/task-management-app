@@ -5,66 +5,67 @@
         <button class="col-1 btn btn-danger "
             (click)="navigateToWelcome()">Logout</button>
     </div>
+
     <!-- Project List Table -->
     <div class="card p-4 my-4">
         <h4>Project List</h4>
-        <div class="table-container">
-            <table class="table table-bordered table-striped">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Created By</th>
-                        <th>Project Manager</th>
-                        <th>Team Member</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngIf="projects.length > 0">
-                        <tr *ngFor="let project of projects">
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.title }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.description }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.createdBy }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.manager }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.teamMembers }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.startDate }}</td>
-                            <td class="text-center"
-                                (click)="navigateToaddtask(project.id)">{{
-                                project.endDate }}</td>
 
-                            <td class="text-center">
-                                <button
-                                    class="btn btn-primary btn-sm mx-3 btn-view"
-                                    (click)="viewProject(project)">view</button>
-                                <button class="btn btn-danger btn-sm "
-                                    (click)="deleteProject(project.id)">Delete</button>
-                            </td>
-                        </tr>
-                    </ng-container>
-                    <tr *ngIf="projects.length == 0">
-                        <td colspan="8">
-                            <h6 class="text-center">Curruntly no data
-                                available</h6>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Created By</th>
+                    <th>Project Manager</th>
+                    <th>Team Member</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="projects.length > 0">
+                    <tr *ngFor="let project of projects">
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.title }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.description }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.createdBy }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.manager }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.teamMembers }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.startDate }}</td>
+                        <td class="text-center"
+                            (click)="navigateToaddtask(project.id)">{{
+                            project.endDate }}</td>
+
+                        <td class="text-center">
+                            <button
+                                class="btn btn-primary btn-sm mx-3 btn-view"
+                                (click)="viewProject(project)">Edit</button>
+                            <button class="btn btn-danger btn-sm "
+                                (click)="deleteProject(project.id)">Delete</button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
+                </ng-container>
+                <tr *ngIf="projects.length == 0">
+                    <td colspan="8">
+                        <h6 class="text-center">Curruntly no data
+                            available</h6>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
     <div class="text-center">
         <button class="btn btn-success" (click)="navigateToDashboard()">Create

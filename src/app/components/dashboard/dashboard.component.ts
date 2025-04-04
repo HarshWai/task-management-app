@@ -44,16 +44,32 @@ export class DashboardComponent {
 
   // Add new project and navigate to the main component
   addProject() {
-    if (this.project.title && this.project.manager && this.project.startDate && this.project.endDate) {
-      const newProject = { ...this.project, id: Date.now() };
-      this.projects.push(newProject);
-      this.saveProjects();
-      this.resetProjectForm();
+    const storedUser = localStorage.getItem('loggedInUser');
+    const user = storedUser ? JSON.parse(storedUser) : null;
 
-      // Navigate to the main component after saving the project
+    if (!user || !user.name) {
+      alert("Error: No user is logged in.");
+      return;
+    }
+
+    if (this.project.title && this.project.manager && this.project.startDate && this.project.endDate) {
+      const newProject = {
+        ...this.project,
+        id: Date.now(),
+        createdBy: user.name.trim()  // ✅ Automatically assign `createdBy`
+      };
+
+      let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+      projects.push(newProject);
+      localStorage.setItem('projects', JSON.stringify(projects));
+
+      alert("Project added successfully!");
+
+      this.resetProjectForm();
       this.router.navigate(['/main']);
     }
   }
+
 
   // Delete project
   deleteProject(id: number) {
