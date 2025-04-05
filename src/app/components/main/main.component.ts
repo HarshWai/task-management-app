@@ -2,6 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,7 @@ export class MainComponent {
 
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.loadProjects();
@@ -30,6 +31,8 @@ export class MainComponent {
     this.loadUserName();
     this.filterProjects();
   }
+
+
 
 
   loadProjects(): void {
@@ -197,11 +200,13 @@ export class MainComponent {
   // Delete a project
   deleteProject(projectId: number): void {
     this.projects = this.projects.filter(project => project.id !== projectId);
+    this.notificationService.show('Project deleted successfully!', 'error');
     localStorage.setItem('projects', JSON.stringify(this.projects));
   }
   // Delete a task
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
+    this.notificationService.show('Task deleted successfully!');
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 

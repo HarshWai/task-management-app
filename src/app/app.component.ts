@@ -1,9 +1,10 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NotificationComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

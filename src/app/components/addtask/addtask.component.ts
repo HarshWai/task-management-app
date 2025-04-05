@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-add-task',
@@ -21,7 +22,7 @@ export class AddTaskComponent {
     user: null
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     const storedTask = localStorage.getItem('selectedTask');
@@ -63,5 +64,6 @@ export class AddTaskComponent {
     alert(this.task.id ? 'Task updated successfully!' : 'Task added successfully!');
 
     this.router.navigate(['/task-list', this.task.projectId]);
+    this.notificationService.show('New task created!');
   }
 }

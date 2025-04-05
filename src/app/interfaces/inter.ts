@@ -12,9 +12,14 @@ export interface Project {
 export interface Task {
     id: number;
     title: string;
-    status: TaskStatus;
-    projectId: number;
+    description: string;
+    owner: string;
+    startDate: string;
+    dueDate: string;
+    priority: string;
+    status: string;
 }
+
 export enum TaskStatus {
     Pending = 'Pending',
     InProgress = 'In Progress',

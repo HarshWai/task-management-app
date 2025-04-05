@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,7 @@ export class DashboardComponent {
 
   };
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private notificationService: NotificationService) {
     this.loadProjects();
   }
 
@@ -69,6 +70,7 @@ export class DashboardComponent {
 
       this.resetProjectForm();
       this.router.navigate(['/main']);
+      this.notificationService.show('Project created successfully!');
     }
   }
 
