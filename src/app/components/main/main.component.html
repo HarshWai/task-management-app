@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold text-white" href="#">Task
-                Management</a>
+                Management App</a>
             <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false"
@@ -13,6 +13,14 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link active" routerLink="/main">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                            routerLink="/main">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"
+                            routerLink="/task-list/:id">Tasks</a>
                     </li>
 
                 </ul>
@@ -37,17 +45,42 @@
 
     <div class="card p-4 my-4">
         <h4 class="text-center">Project List</h4>
-        <div class="mb-3 col-md-2">
-            <label for="statusFilter" class="form-label">Filter by
-                Status:</label>
-            <select id="statusFilter" class="form-select"
-                [(ngModel)]="selectedStatus" (change)="filterProjects()">
-                <option value="All">All</option>
-                <option value="Pending">Pending</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-            </select>
+        <div class="row">
+            <div class="col-md-2">
+
+                <select id="statusFilter" class="form-select"
+                    [(ngModel)]="selectedStatus" (change)="filterProjects()">
+                    <option value="All">All status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search projects by title..."
+                    [(ngModel)]="searchTerm"
+                    (input)="searchProjects()" />
+            </div>
+            <div class="mb-3 col-md-2">
+                <select id="sortOption" class="form-select"
+                    [(ngModel)]="selectedSortOption" (change)="sortProjects()">
+                    <option value>Select option</option>
+                    <option value="startDate">Start Date</option>
+                    <option value="title">Project Title</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-2">
+
+                <button class="btn btn-primary ms-2"
+                    (click)="toggleDateSortOrder()">
+                    Sort {{ isAscending ? 'Descending' : 'Ascending' }}
+                </button>
+            </div>
         </div>
+
         <table class="table table-bordered table-striped mt-4">
             <thead class="table-dark">
                 <tr class="text-center">

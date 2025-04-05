@@ -15,7 +15,10 @@ export class MainComponent {
   userName: any;
   loggedInUser: string | null = null;
   selectedStatus: string = 'All';
-  allProjects: any[] = []
+  allProjects: any[] = [];
+  searchTerm: string = '';
+  selectedSortOption: string = '';
+  isAscending: boolean = true;
 
 
 
@@ -65,6 +68,41 @@ export class MainComponent {
       this.projects = this.allProjects.filter(project => project.status === this.selectedStatus);
     }
   }
+
+  searchProjects(): void {
+    const term = this.searchTerm.trim().toLowerCase();
+    if (term === '') {
+      this.projects = [...this.allProjects]; // Reset to full list when search is cleared
+    } else {
+      this.projects = this.allProjects.filter(project =>
+        project.title.toLowerCase().includes(term)
+      );
+    }
+  }
+
+  sortProjects(): void {
+    if (this.selectedSortOption === 'startDate') {
+      this.projects.sort((a, b) => {
+        const dateA = new Date(a.startDate).getTime();
+        const dateB = new Date(b.startDate).getTime();
+        return dateA - dateB; // Ascending order
+      });
+    } else if (this.selectedSortOption === 'title') {
+      this.projects.sort((a, b) => a.title.localeCompare(b.title)); // Alphabetical A-Z
+    }
+  }
+
+  toggleDateSortOrder(): void {
+    this.isAscending = !this.isAscending;
+
+    this.projects.sort((a, b) => {
+      const dateA = new Date(a.startDate).getTime();
+      const dateB = new Date(b.startDate).getTime();
+
+      return this.isAscending ? dateA - dateB : dateB - dateA;
+    });
+  }
+
 
 
 

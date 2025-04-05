@@ -1,33 +1,31 @@
 /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #eef2f3;
+    /* Light grayish background */
 }
 
 /* Navbar Styling */
+.navbar {
+    background-color: #3e4e5e !important;
+    /* Changed navbar color */
+}
+
 .navbar-brand {
     font-size: 1.5rem;
+    color: #ffffff;
 }
 
-.navbar-nav .nav-link {
-    font-size: 1rem;
-    color: #fff !important;
-    transition: color 0.3s ease-in-out;
+.navbar-brand:hover {
+    color: #ffc107;
 }
 
-.navbar-nav .nav-link:hover {
-    color: #ffc107 !important;
+.nav-link.active {
+    color: white !important;
+    /* Highlight active link */
 }
 
-/* Profile Image Styling */
-.profile-img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-/* Dropdown Menu Styling */
+/* Dropdown */
 .dropdown-menu {
     min-width: 120px;
     text-align: center;
@@ -37,21 +35,27 @@ body {
     cursor: pointer;
 }
 
-/* Card Styling */
-.card {
-    border: none;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+.dropdown-item:hover {
+    background-color: #ffc107;
+    color: #212529;
 }
 
 /* Table Styling */
 .table {
-    background: #fff;
+    background: #ffffff;
     border-radius: 5px;
     overflow: hidden;
+    border: 1px solid #dee2e6;
+}
+
+.table thead {
+    background: #3e4e5e;
+    color: #ffffff;
 }
 
 .table th {
     text-align: center;
+    vertical-align: middle;
 }
 
 .table tbody tr {
@@ -59,18 +63,13 @@ body {
 }
 
 .table tbody tr:hover {
-    background: #e9ecef;
+    background: #f6f9fc;
 }
 
-/* Responsive Table */
-.table-responsive {
-    overflow-x: auto;
-}
-
-/* Status Badge Styling */
-.badge {
-    font-size: 0.9rem;
-    padding: 5px 10px;
+/* Hover Effect for Rows */
+.hover-effect:hover {
+    cursor: pointer;
+    background: #f6f9fc;
 }
 
 /* Button Styling */
@@ -78,14 +77,13 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.btn-warning {
-    background-color: #ffc107;
+.btn-primary {
+    background-color: #17a2b8;
     border: none;
-    color: black;
 }
 
-.btn-warning:hover {
-    background-color: #e0a800;
+.btn-primary:hover {
+    background-color: #138496;
 }
 
 .btn-danger {
@@ -94,39 +92,55 @@ body {
 }
 
 .btn-danger:hover {
-    background-color: #a71d2a;
+    background-color: #b52a37;
 }
 
-.btn-primary {
-    background-color: #007bff;
+.btn-success {
+    background-color: #28a745;
     border: none;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+.btn-success:hover {
+    background-color: #218838;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
+/* Table Container with Scroll */
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
     border: none;
 }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
+.table-container table thead {
+    position: sticky;
+    top: 0;
+    background: #3e4e5e;
+    color: white;
+    z-index: 1;
 }
 
-/* Flexbox for Buttons */
-.btn-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    justify-content: center;
-}
-
-/* Make Buttons Full-Width on Small Screens */
+/* Responsive Styling */
 @media (max-width: 768px) {
-    .btn-container {
-        flex-direction: column;
+    .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .btn-sm {
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .profile-img {
+        width: 35px;
+        height: 35px;
     }
 
     .btn-sm {

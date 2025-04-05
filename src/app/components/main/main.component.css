@@ -1,16 +1,28 @@
 /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: #eef2f3;
+    /* Light grayish background */
 }
 
 /* Navbar Styling */
-.navbar-brand {
-    font-size: 1.5rem;
+.navbar {
+    background-color: #3e4e5e !important;
+    /* Changed navbar color */
 }
 
-.profile-img {
-    border: 2px solid white;
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.navbar-brand:hover {
+    color: #ffc107;
+}
+
+.nav-link.active {
+    color: white !important;
+    /* Highlight active link */
 }
 
 /* Dropdown */
@@ -23,11 +35,22 @@ body {
     cursor: pointer;
 }
 
+.dropdown-item:hover {
+    background-color: #ffc107;
+    color: #212529;
+}
+
 /* Table Styling */
 .table {
-    background: #fff;
+    background: #ffffff;
     border-radius: 5px;
     overflow: hidden;
+    border: 1px solid #dee2e6;
+}
+
+.table thead {
+    background: #3e4e5e;
+    color: #ffffff;
 }
 
 .table th {
@@ -40,13 +63,13 @@ body {
 }
 
 .table tbody tr:hover {
-    background: #e9ecef;
+    background: #f6f9fc;
 }
 
 /* Hover Effect for Rows */
 .hover-effect:hover {
     cursor: pointer;
-    background: #f1f1f1;
+    background: #f6f9fc;
 }
 
 /* Button Styling */
@@ -55,12 +78,12 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #17a2b8;
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #138496;
 }
 
 .btn-danger {
@@ -69,7 +92,7 @@ body {
 }
 
 .btn-danger:hover {
-    background-color: #a71d2a;
+    background-color: #b52a37;
 }
 
 .btn-success {
@@ -78,22 +101,20 @@ body {
 }
 
 .btn-success:hover {
-    background-color: #1e7e34;
+    background-color: #218838;
 }
 
 /* Table Container with Scroll */
 .table-container {
     max-height: 400px;
-    /* Set the desired height */
     overflow-y: auto;
     border: none;
 }
 
-/* Make table header sticky */
 .table-container table thead {
     position: sticky;
     top: 0;
-    background: #212529;
+    background: #3e4e5e;
     color: white;
     z-index: 1;
 }
