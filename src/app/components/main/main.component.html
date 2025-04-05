@@ -37,7 +37,17 @@
 
     <div class="card p-4 my-4">
         <h4 class="text-center">Project List</h4>
-
+        <div class="mb-3 col-md-2">
+            <label for="statusFilter" class="form-label">Filter by
+                Status:</label>
+            <select id="statusFilter" class="form-select"
+                [(ngModel)]="selectedStatus" (change)="filterProjects()">
+                <option value="All">All</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
         <table class="table table-bordered table-striped mt-4">
             <thead class="table-dark">
                 <tr class="text-center">

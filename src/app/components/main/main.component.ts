@@ -14,6 +14,9 @@ export class MainComponent {
   tasks: any[] = [];
   userName: any;
   loggedInUser: string | null = null;
+  selectedStatus: string = 'All';
+  allProjects: any[] = []
+
 
 
   constructor(private router: Router) { }
@@ -22,7 +25,7 @@ export class MainComponent {
     this.loadProjects();
     this.loadTasks();
     this.loadUserName();
-
+    this.filterProjects();
   }
 
 
@@ -31,7 +34,8 @@ export class MainComponent {
     const storedUser = localStorage.getItem('loggedInUser');
 
     if (!storedProjects || !storedUser) {
-      this.projects = []; // If no projects or user data, show empty array
+      this.projects = [];
+      this.allProjects = [];
       return;
     }
 
@@ -40,15 +44,28 @@ export class MainComponent {
 
     if (!user.name) {
       this.projects = [];
+      this.allProjects = [];
       return;
     }
 
-    this.projects = allProjects.filter(project =>
+    // Store original list
+    this.allProjects = allProjects.filter(project =>
       project.createdBy?.trim().toLowerCase() === user.name.trim().toLowerCase()
     );
 
-    // console.warn('Filtered Projects:', this.projects);
+    // Set initial projects to show all
+    this.projects = [...this.allProjects];
   }
+
+
+  filterProjects(): void {
+    if (this.selectedStatus === 'All') {
+      this.projects = [...this.allProjects]; // Always filter from original
+    } else {
+      this.projects = this.allProjects.filter(project => project.status === this.selectedStatus);
+    }
+  }
+
 
 
   selectProject(projectId: number): void {

@@ -13,6 +13,14 @@
             <input type="text" class="form-control mb-2"
                 [(ngModel)]="selectedProject.description" />
 
+            <label class="form-label">Status</label>
+            <select class="form-select" [(ngModel)]="selectedProject.status"
+                name="status" required>
+                <option value>Select status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
             <label><strong>Project Manager:</strong></label>
             <input type="text" class="form-control mb-2"
                 [(ngModel)]="selectedProject.manager" />
