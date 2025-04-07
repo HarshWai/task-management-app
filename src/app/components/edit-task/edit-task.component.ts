@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-task',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [FormsModule, NgIf],
   templateUrl: './edit-task.component.html',
   styleUrls: ['./edit-task.component.css']
 })
-export class EditTaskComponent {
+export class EditTaskComponent implements OnInit {
   task: any = {
     id: null,
     title: '',
@@ -19,6 +21,8 @@ export class EditTaskComponent {
     deadline: ''
   };
 
+  submitted: boolean = false; // ✅ Added submitted flag
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -28,7 +32,13 @@ export class EditTaskComponent {
     }
   }
 
-  updateTask(): void {
+  updateTask(form: NgForm): void {
+    this.submitted = true; // ✅ Set form as submitted to show validation messages
+
+    if (form.invalid) {
+      return; // ✅ Stop if form is invalid
+    }
+
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
 
     tasks = tasks.map((t: any) => (t.id === this.task.id ? this.task : t));
@@ -36,7 +46,6 @@ export class EditTaskComponent {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.removeItem('selectedTask');
 
-    alert('Task updated successfully!');
-    this.router.navigate(['/task-list/:id']);
+    this.router.navigate(['/main']);
   }
 }

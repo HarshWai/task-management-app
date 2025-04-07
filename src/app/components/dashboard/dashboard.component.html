@@ -1,30 +1,84 @@
 <div class="container mt-4">
+    <nav class="navbar navbar-expand-lg"
+        [ngClass]="isDarkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Project Manager</a>
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                            href="#">Create Project</a>
+                    </li>
+                </ul>
+                <!-- Dark Mode Toggle Switch -->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox"
+                        id="darkModeToggle" (change)="toggleDarkMode()" />
+                    <label class="form-check-label" for="darkModeToggle">Dark
+                        Mode</label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <h2 class="text-center">Create Project</h2>
 
     <!-- Project Creation Form -->
-    <form (ngSubmit)="addProject()" class="p-4 border rounded shadow bg-white">
-        <div class="row g-3"> <!-- Added g-3 for consistent spacing -->
+    <form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)"
+        class="p-4 border rounded shadow bg-white">
+
+        <div class="row g-3">
             <div class="col-md-4">
                 <label class="form-label">Title</label>
                 <input type="text" class="form-control"
+                    [class.is-invalid]="(title.invalid && (title.touched || submitted))"
                     [(ngModel)]="project.title" name="title" required
+                    #title="ngModel"
                     placeholder="Enter project title">
+                <div class="text-danger"
+                    *ngIf="title.invalid && (title.touched || submitted)">Title
+                    is required.</div>
             </div>
+
             <div class="col-md-4">
                 <label class="form-label">Description</label>
                 <input type="text" class="form-control"
+                    [class.is-invalid]="(description.invalid && (description.touched || submitted))"
                     [(ngModel)]="project.description" name="description"
-                    required placeholder="Enter project description">
+                    required #description="ngModel"
+                    placeholder="Enter project description">
+                <div class="text-danger"
+                    *ngIf="description.invalid && (description.touched || submitted)">Description
+                    is required.</div>
             </div>
+
             <div class="col-md-4">
                 <label class="form-label">Status</label>
-                <select class="form-select" [(ngModel)]="project.status"
-                    name="status" required>
+                <select class="form-select"
+                    [class.is-invalid]="(status.invalid && (status.touched || submitted))"
+                    [(ngModel)]="project.status" name="status" required
+                    #status="ngModel">
                     <option value>Select status</option>
                     <option value="Pending">Pending</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                 </select>
+                <div class="text-danger"
+                    *ngIf="status.invalid && (status.touched || submitted)">Status
+                    is required.</div>
             </div>
         </div>
 
@@ -32,27 +86,55 @@
             <div class="col-md-6">
                 <label class="form-label">Project Manager</label>
                 <input type="text" class="form-control"
+                    [class.is-invalid]="(manager.invalid && (manager.touched || submitted))"
                     [(ngModel)]="project.manager" name="manager" required
+                    #manager="ngModel"
                     placeholder="Enter project manager name">
+                <div class="text-danger"
+                    *ngIf="manager.invalid && (manager.touched || submitted)">Manager
+                    name is required.</div>
             </div>
+
             <div class="col-md-6">
                 <label class="form-label">Team Members</label>
                 <input type="text" class="form-control"
+                    [class.is-invalid]="(teamMembers.invalid && (teamMembers.touched || submitted))"
                     [(ngModel)]="project.teamMembers" name="teamMembers"
-                    required placeholder="Enter team members names">
+                    required #teamMembers="ngModel"
+                    placeholder="Enter team members names">
+                <div class="text-danger"
+                    *ngIf="teamMembers.invalid && (teamMembers.touched || submitted)">Team
+                    members are required.</div>
             </div>
         </div>
 
         <div class="row g-3 mt-2">
-            <div class="col-md-6">
-                <label class="form-label">Start Date</label>
-                <input type="date" class="form-control"
-                    [(ngModel)]="project.startDate" name="startDate" required>
+            <div class="mb-3">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input
+                    type="date"
+                    id="startDate"
+                    class="form-control"
+                    [(ngModel)]="project.startDate"
+                    name="startDate"
+                    required />
             </div>
-            <div class="col-md-6">
-                <label class="form-label">End Date</label>
-                <input type="date" class="form-control"
-                    [(ngModel)]="project.endDate" name="endDate" required>
+
+            <div class="mb-3">
+                <label for="endDate" class="form-label">End Date</label>
+                <input
+                    type="date"
+                    id="endDate"
+                    class="form-control"
+                    [(ngModel)]="project.endDate"
+                    name="endDate"
+                    [min]="project.startDate"
+                    required />
+                <div
+                    *ngIf="project.endDate && project.endDate < project.startDate"
+                    class="text-danger">
+                    End date cannot be earlier than start date.
+                </div>
             </div>
         </div>
 

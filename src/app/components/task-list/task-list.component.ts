@@ -47,14 +47,28 @@ export class TaskListComponent {
 
     this.selectedProjectId = parseInt(localStorage.getItem('selectedProjectId') || '0', 10);
   }
-  convertToHoursMinutes(value: number): string {
-    const hours = Math.floor(value);
-    const minutes = Math.round((value - hours) * 60);
-    // Add leading zeros if needed
-    const formattedHours = hours.toString().padStart(2, '0');
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    return `${formattedHours}:${formattedMinutes} hours`;
+  convertToHoursMinutes(timeString: string): string {
+    if (!timeString) return '0h 0m'; // handle empty case
+
+    const parts = timeString.split(' ');
+
+    let hours = 0;
+    let minutes = 0;
+
+    if (parts.length > 0) {
+      hours = parseInt(parts[0].replace(/\D/g, ''), 10) || 0;
+    }
+
+    if (parts.length > 1) {
+      minutes = parseInt(parts[1].replace(/\D/g, ''), 10) || 0;
+    }
+
+    return `${hours}h ${minutes}m`;
   }
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
 
 
 

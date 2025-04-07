@@ -1,10 +1,12 @@
-<div *ngFor="let notification of notifications">
-    <div [ngClass]="{
-    'alert': true,
-    'alert-success': notification.type === 'success',
-    'alert-danger': notification.type === 'error',
-    'alert-warning': notification.type === 'warning'
-  }">
+<div class="notification-container">
+    <div *ngFor="let notification of notifications"
+        [ngClass]="[
+         'notification', 
+         notification.state,
+         notification.type === 'success' ? 'alert-success' : 
+         notification.type === 'error' ? 'alert-danger' : 
+         'alert-warning'
+       ]">
         {{ notification.message }}
     </div>
 </div>

@@ -27,7 +27,14 @@
 
                 </ul>
                 <div class="d-flex align-items-center">
+                    <div class="form-check form-switch text-white me-3">
+                        <input class="form-check-input" type="checkbox"
+                            id="darkModeSwitch" (change)="toggleDarkMode()">
+                        <label class="form-check-label"
+                            for="darkModeSwitch">Dark Mode</label>
+                    </div>
                     <div class="dropdown">
+
                         <button class="btn btn-dark dropdown-toggle"
                             type="button"
                             id="userDropdown" data-bs-toggle="dropdown"

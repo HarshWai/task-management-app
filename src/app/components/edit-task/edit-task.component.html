@@ -1,40 +1,89 @@
 <div class="container mt-4">
     <h2 class="text-center">Edit Task</h2>
-    <form (ngSubmit)="updateTask()" class="p-4 border rounded shadow">
+    <form #taskForm="ngForm" (ngSubmit)="updateTask(taskForm)"
+        class="p-4 border rounded shadow">
+
         <div class="mb-3">
             <label class="form-label">Task Title</label>
             <input type="text" class="form-control" [(ngModel)]="task.title"
-                name="title" required>
+                name="title" required #title="ngModel"
+                [class.is-invalid]="title.invalid && (title.touched || submitted)">
+            <div class="text-danger"
+                *ngIf="title.invalid && (title.touched || submitted)">
+                Task title is required.
+            </div>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Assigned To</label>
             <input type="text" class="form-control"
-                [(ngModel)]="task.assignedTo" name="assignedTo" required>
+                [(ngModel)]="task.assignedTo" name="assignedTo" required
+                #assignedTo="ngModel"
+                [class.is-invalid]="assignedTo.invalid && (assignedTo.touched || submitted)">
+            <div class="text-danger"
+                *ngIf="assignedTo.invalid && (assignedTo.touched || submitted)">
+                Assigned to is required.
+            </div>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Status</label>
             <select class="form-select" [(ngModel)]="task.status" name="status"
-                required>
+                required #status="ngModel"
+                [class.is-invalid]="status.invalid && (status.touched || submitted)">
                 <option value="Pending">Pending</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select>
+            <div class="text-danger"
+                *ngIf="status.invalid && (status.touched || submitted)">
+                Status is required.
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Estimated Time (hrs)</label>
-            <input type="number" class="form-control"
-                [(ngModel)]="task.estimate" name="estimate" required>
+
+        <div class="row g-3">
+            <!-- Estimated Time -->
+            <div class="col-md-6">
+                <label class="form-label">Estimated Time</label>
+                <input type="time" class="form-control"
+                    [(ngModel)]="task.estimatedTime"
+                    name="estimatedTime"
+                    required
+                    #estimatedTime="ngModel"
+                    [class.is-invalid]="(estimatedTime.invalid && (estimatedTime.touched || submitted))">
+                <div class="text-danger"
+                    *ngIf="estimatedTime.invalid && (estimatedTime.touched || submitted)">
+                    Estimated time is required.
+                </div>
+            </div>
+
+            <!-- Time Spent -->
+            <div class="col-md-6">
+                <label class="form-label">Time Spent</label>
+                <input type="time" class="form-control"
+                    [(ngModel)]="task.timeSpent"
+                    name="timeSpent"
+                    required
+                    #timeSpent="ngModel"
+                    [class.is-invalid]="(timeSpent.invalid && (timeSpent.touched || submitted))">
+                <div class="text-danger"
+                    *ngIf="timeSpent.invalid && (timeSpent.touched || submitted)">
+                    Time spent is required.
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Time Spent (hrs)</label>
-            <input type="number" class="form-control"
-                [(ngModel)]="task.timeSpent" name="timeSpent" required>
-        </div>
-        <div class="mb-3">
+
+        <div class="mb-3 mt-3">
             <label class="form-label">Deadline</label>
             <input type="date" class="form-control" [(ngModel)]="task.deadline"
-                name="deadline" required>
+                name="deadline" required #deadline="ngModel"
+                [class.is-invalid]="deadline.invalid && (deadline.touched || submitted)">
+            <div class="text-danger"
+                *ngIf="deadline.invalid && (deadline.touched || submitted)">
+                Deadline is required.
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Update Task</button>
+
+        <button type="submit" class="btn btn-primary w-100">Update Task</button>
     </form>
 </div>

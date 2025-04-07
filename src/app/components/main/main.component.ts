@@ -215,4 +215,11 @@ export class MainComponent {
   }
 
 
+
+  toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+
+
 }

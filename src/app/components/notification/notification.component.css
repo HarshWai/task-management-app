@@ -1,15 +1,27 @@
+/* Notification container style */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 /* Base style for notification */
 .notification {
     padding: 12px 20px;
-    margin: 10px;
     border-radius: 6px;
     color: #fff;
     font-weight: 500;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.5s ease-out;
     display: flex;
     align-items: center;
     gap: 10px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 /* Success (green) */
@@ -28,20 +40,19 @@
     color: #212529;
 }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Fade-in animation (on entry) */
+.notification.enter {
+    opacity: 0;
+    transform: translateY(-15px);
 }
 
-/* Optional: Add icon style */
+/* Fade-out animation (on exit) */
+.notification.exit {
+    opacity: 0;
+    transform: translateY(-15px);
+}
+
+/* Optional: Icon style */
 .notification::before {
     content: '🔔';
     font-size: 18px;

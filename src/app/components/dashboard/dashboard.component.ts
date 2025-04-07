@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,13 +6,13 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf, NgClass],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
 
-
+  submitted = false;
   projects: any[] = [];
 
   project = {
@@ -55,19 +55,25 @@ export class DashboardComponent {
       return;
     }
 
+    // Validate startDate and endDate
+    const startDate = new Date(this.project.startDate);
+    const endDate = new Date(this.project.endDate);
+
+    if (endDate < startDate) {
+      alert("Error: End date cannot be earlier than start date.");
+      return;
+    }
+
     if (this.project.title && this.project.manager && this.project.startDate && this.project.endDate) {
       const newProject = {
         ...this.project,
         id: Date.now(),
-        createdBy: user.name.trim()  // ✅ Automatically assign `createdBy`
+        createdBy: user.name.trim() // ✅ Automatically assign `createdBy`
       };
 
       let projects = JSON.parse(localStorage.getItem('projects') || '[]');
       projects.push(newProject);
       localStorage.setItem('projects', JSON.stringify(projects));
-
-      alert("Project added successfully!");
-
       this.resetProjectForm();
       this.router.navigate(['/main']);
       this.notificationService.show('Project created successfully!');
@@ -85,5 +91,36 @@ export class DashboardComponent {
   resetProjectForm() {
     this.project = { title: '', description: '', status: '', createdBy: '', manager: '', teamMembers: '', startDate: '', endDate: '', dueDate: '' };
   }
+  onSubmit(form: NgForm) {
+    this.submitted = true;
 
+    const startDate = new Date(this.project.startDate);
+    const endDate = new Date(this.project.endDate);
+
+    if (endDate < startDate) {
+      alert("Error: End date cannot be earlier than start date.");
+      return;
+    }
+
+    if (form.valid) {
+      this.addProject();
+    }
+  }
+
+  // toggleDarkMode() {
+  //   document.body.classList.toggle('dark-mode');
+  // }
+
+
+  isDarkMode = false;
+
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+
+    if (this.isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }
 }
