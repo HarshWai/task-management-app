@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-task-list',
@@ -18,7 +19,7 @@ export class TaskListComponent {
   selectedStatus: string = 'All';
   allTasks: any[] = [];
   searchTerm: string = '';
-  constructor(private router: Router, private route: ActivatedRoute, public navbar: UserService) {
+  constructor(private router: Router, private route: ActivatedRoute, public navbar: UserService, public notificationService: NotificationService) {
 
   }
 
@@ -134,6 +135,7 @@ export class TaskListComponent {
   deleteTask(taskId: number): void {
 
     this.tasks = this.tasks.filter(task => task.id !== taskId);
+    this.notificationService.show('Task deleted successfully!', 'error');
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
 
 

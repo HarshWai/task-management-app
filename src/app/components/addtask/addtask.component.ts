@@ -61,9 +61,8 @@ export class AddTaskComponent {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.removeItem('selectedTask');
-    alert(this.task.id ? 'Task updated successfully!' : 'Task added successfully!');
 
     this.router.navigate(['/task-list', this.task.projectId]);
-    this.notificationService.show('New task created!');
+    this.notificationService.show('Task added successfully!', 'success');
   }
 }
