@@ -151,7 +151,8 @@ export class TaskListComponent {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
     this.notificationService.show('Task deleted successfully!', 'error');
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
-
-
+  }
+  goBack(): void {
+    this.router.navigate(['/main']);
   }
 }

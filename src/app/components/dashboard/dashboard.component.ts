@@ -14,7 +14,7 @@ export class DashboardComponent {
 
   submitted = false;
   projects: any[] = [];
-
+  isDarkMode = false;
   project = {
     title: '',
     description: '',
@@ -112,7 +112,7 @@ export class DashboardComponent {
   // }
 
 
-  isDarkMode = false;
+
 
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
@@ -122,5 +122,8 @@ export class DashboardComponent {
     } else {
       document.body.classList.remove('dark-mode');
     }
+  }
+  goBack(): void {
+    this.router.navigate(['/main']);
   }
 }

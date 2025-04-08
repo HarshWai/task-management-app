@@ -1,0 +1,87 @@
+/* Container styling - Increased width */
+.container {
+    max-width: 1200px;
+    /* increased from 900px */
+    margin: auto;
+    padding: 20px;
+}
+
+/* Card styling */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.card-header:hover {
+    color: #ffc107;
+    /* amber / highlight color */
+}
+
+/* Task details */
+.card-body {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.card-body p {
+    margin: 4px 0;
+    font-size: 15px;
+    color: #333;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.card-body p:hover {
+    color: #007bff;
+    /* blue on hover */
+}
+
+/* Make strong text slightly bolder */
+.card-body p strong {
+    color: #555;
+}
+
+/* No tasks text */
+.text-muted {
+    font-style: italic;
+    color: #888 !important;
+}
+
+/* Alert styling */
+.alert-warning {
+    border-radius: 8px;
+    padding: 12px;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+/* Small spacing for bottom borders inside task list */
+.border-bottom {
+    border-color: #e0e0e0 !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .card-header {
+        font-size: 16px;
+    }
+
+    .card-body p {
+        font-size: 13px;
+    }
+}

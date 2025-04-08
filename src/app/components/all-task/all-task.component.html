@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <h2>All Projects and Tasks</h2>
+
+    <div *ngIf="projects.length > 0; else noProjects">
+        <div *ngFor="let project of projects" class="card mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                Project: {{ project.title }}
+            </div>
+
+            <div class="card-body"
+                *ngIf="getTasksForProject(project.id).length > 0; else noTasks">
+                <div *ngFor="let task of getTasksForProject(project.id)"
+                    class="mb-3 border-bottom pb-2">
+                    <p><strong>Task Title:</strong> {{ task.title }}</p>
+                    <p><strong>Assigned To:</strong> {{ task.assignedTo }}</p>
+                    <p><strong>Status:</strong> {{ task.status }}</p>
+                    <p><strong>Estimate:</strong> {{ task.estimate }}</p>
+                    <p><strong>Time Spent:</strong> {{ task.timeSpent }}</p>
+                    <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+                </div>
+            </div>
+
+            <ng-template #noTasks>
+                <div class="text-muted">No tasks for this project.</div>
+            </ng-template>
+        </div>
+    </div>
+
+    <ng-template #noProjects>
+        <div class="alert alert-warning">No projects found.</div>
+    </ng-template>
+</div>

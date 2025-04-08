@@ -1,10 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { NotificationComponent } from './components/notification/notification.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NotificationComponent],
+  imports: [RouterOutlet, NotificationComponent, LayoutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

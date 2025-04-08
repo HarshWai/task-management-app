@@ -1,4 +1,4 @@
- <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-white" href="#">Task
             Management App</a>
@@ -10,20 +10,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" routerLink="/main">Home</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link active"
                         routerLink="/main">Projects</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active"
-                        routerLink="/task-list/:id">Tasks</a>
+                        routerLink="/all-tasks">Tasks</a>
                 </li>
 
             </ul>
             <div class="d-flex align-items-center">
+                <!-- Toggle Switch for Dark Mode -->
+                <div class="form-check form-switch text-white ms-3">
+                    <input class="form-check-input" type="checkbox"
+                        id="darkModeSwitch" (change)="toggleTheme($event)">
+                    <label class="form-check-label" for="darkModeSwitch">Dark
+                        Mode</label>
+                </div>
+
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle"
                         type="button"
@@ -31,6 +37,7 @@
                         aria-expanded="false">
                         Welcome, {{ userName }}
                     </button>
+
                     <ul class="dropdown-menu dropdown-menu-end"
                         aria-labelledby="userDropdown">
                         <li><button class="dropdown-item text-danger"
@@ -40,4 +47,7 @@
             </div>
         </div>
     </div>
-</nav> -->
+</nav>
+<div class="router-outlet-container">
+    <router-outlet></router-outlet>
+</div>

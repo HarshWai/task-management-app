@@ -48,4 +48,13 @@ export class EditTaskComponent implements OnInit {
 
     this.router.navigate(['/main']);
   }
+
+  goBack(): void {
+    const selectedProjectId = localStorage.getItem('selectedProjectId');
+    if (selectedProjectId) {
+      this.router.navigate(['/task-list', selectedProjectId]);
+    } else {
+      this.router.navigate(['/main']); // Fallback if no project ID found
+    }
+  }
 }
