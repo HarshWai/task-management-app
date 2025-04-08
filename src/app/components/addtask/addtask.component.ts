@@ -6,7 +6,7 @@ import { NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
-  imports: [FormsModule, NgIf, NgClass],
+  imports: [FormsModule, NgIf],
   templateUrl: './addtask.component.html',
   styleUrl: './addtask.component.css'
 })

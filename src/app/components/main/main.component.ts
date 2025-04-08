@@ -6,7 +6,7 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-main',
-  imports: [FormsModule, NgFor, NgIf, RouterLink, NgClass],
+  imports: [FormsModule, NgFor, NgIf, NgClass],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

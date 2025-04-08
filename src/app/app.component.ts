@@ -5,7 +5,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NotificationComponent, LayoutComponent],
+  imports: [RouterOutlet, NotificationComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

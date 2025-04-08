@@ -15,7 +15,7 @@ import { AllTaskComponent } from './components/all-task/all-task.component';
 
 export const routes: Routes = [
     { path: 'welcome', component: WelcomeComponent },
-    // { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+    { path: '', redirectTo: '/welcome', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     {

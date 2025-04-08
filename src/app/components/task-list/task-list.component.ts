@@ -7,7 +7,7 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-task-list',
-  imports: [FormsModule, NgFor, NgClass, RouterLink],
+  imports: [FormsModule, NgFor, NgClass],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
