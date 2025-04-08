@@ -1,53 +1,65 @@
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-white" href="#">Task
-            Management App</a>
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false"
+        <!-- Branding -->
+        <a class="navbar-brand fw-bold text-white" href="#">Task Management
+            App</a>
+
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar links and actions -->
         <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Centered Nav Links -->
             <ul class="navbar-nav mx-auto">
-
                 <li class="nav-item">
-                    <a class="nav-link active"
-                        routerLink="/main">Projects</a>
+                    <a class="nav-link active" routerLink="/main">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"
-                        routerLink="/all-tasks">Tasks</a>
+                    <a class="nav-link active" routerLink="/all-tasks">Tasks</a>
                 </li>
-
             </ul>
-            <div class="d-flex align-items-center">
-                <!-- Toggle Switch for Dark Mode -->
-                <div class="form-check form-switch text-white ms-3">
+
+            <!-- Right Side Actions -->
+            <div class="d-flex align-items-center gap-3">
+
+                <!-- Dark Mode Toggle -->
+                <div class="form-check form-switch text-white mb-0">
                     <input class="form-check-input" type="checkbox"
-                        id="darkModeSwitch" (change)="toggleTheme($event)">
-                    <label class="form-check-label" for="darkModeSwitch">Dark
-                        Mode</label>
+                        id="darkModeSwitch"
+                        (change)="toggleTheme($event)">
+                    <label class="form-check-label mb-0" for="darkModeSwitch">
+                        {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
+                    </label>
                 </div>
 
+                <!-- User Dropdown -->
                 <div class="dropdown">
-                    <button class="btn btn-dark dropdown-toggle"
-                        type="button"
+                    <button class="btn btn-dark dropdown-toggle" type="button"
                         id="userDropdown" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Welcome, {{ userName }}
                     </button>
-
                     <ul class="dropdown-menu dropdown-menu-end"
                         aria-labelledby="userDropdown">
-                        <li><button class="dropdown-item text-danger"
-                                (click)="navigateToWelcome()">Logout</button></li>
+                        <li>
+                            <button class="dropdown-item text-danger"
+                                (click)="logout()">
+                                Logout
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </nav>
-<div class="router-outlet-container">
+
+<!-- Router outlet for pages -->
+<div class="router-outlet-container mt-4">
     <router-outlet></router-outlet>
 </div>

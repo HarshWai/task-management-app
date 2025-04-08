@@ -9,6 +9,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class LayoutComponent {
   userName: any;
+  isDarkMode: boolean = false;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -24,12 +26,13 @@ export class LayoutComponent {
       this.userName = 'Guest'; // Default if no user is logged in
     }
   }
-  navigateToWelcome() {
+  logout() {
     localStorage.removeItem('loggedInUser');
     this.router.navigate(['/welcome']);
   }
 
   toggleTheme(event: any) {
+    this.isDarkMode = !this.isDarkMode;
     if (event.target.checked) {
       document.body.classList.add('dark-mode');
     } else {
