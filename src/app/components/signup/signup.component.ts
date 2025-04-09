@@ -30,7 +30,7 @@ export class SignupComponent {
 
     // Check email format
     if (!this.isValidEmail(this.email)) {
-      // this.notificationService.show('Enter Valid user name', 'error');
+      this.notificationService.showWarning('Enter valid email!');
       return;
     }
 
@@ -39,12 +39,12 @@ export class SignupComponent {
     let userExists = users.some((user: any) => user.email === this.email);
 
     if (userExists) {
-      // this.notificationService.show('User already exist', 'error');
+      this.notificationService.showInfo('User already exist.');
     } else {
       users.push({ name: this.name, email: this.email, password: this.password });
       localStorage.setItem('users', JSON.stringify(users));
       console.log(users);
-      this.router.navigate(['/login']);  // Redirect to login page
+      this.router.navigate(['/login']);
     }
   }
 }
