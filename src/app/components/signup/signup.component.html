@@ -1,9 +1,17 @@
 <div class="login-wrapper">
-    <div class="signup-container">
-        <div class="container">
-            <h2 class="text-center">Signup</h2>
+    <div
+        class="signup-container d-flex justify-content-center align-items-center">
+        <div class="container" style="max-width: 400px;">
+            <!-- Avatar Image -->
+            <div class="text-center mb-3">
+                <img src="https://www.w3schools.com/howto/img_avatar.png"
+                    alt="Avatar" class="avatar-img"
+                    style="width: 100px; border-radius: 50%;">
+            </div>
 
-            <!-- Show error message if form is invalid -->
+            <h2 class="text-center mb-4">Create Account</h2>
+
+            <!-- Error message -->
             <span *ngIf="formSubmitted && signupForm.invalid"
                 class="alert-danger text-center d-block mb-2">
                 All fields are required.
@@ -11,33 +19,27 @@
 
             <form (ngSubmit)="onSignup()" #signupForm="ngForm">
                 <div class="form-group">
-                    <label for="name">Name:</label>
+                    <label for="name" class="d-block text-left">Name:</label>
                     <input type="text" name="name" class="form-control"
                         [(ngModel)]="name" required
                         placeholder="Enter your name">
 
-                    <label for="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        class="form-control"
-                        [(ngModel)]="email"
-                        name="email"
-                        required
-                        email
-                        placeholder="Enter your email"
+                    <label for="email"
+                        class="d-block text-left mt-3">Email:</label>
+                    <input type="email" id="email" class="form-control"
+                        [(ngModel)]="email" name="email"
+                        required email placeholder="Enter your email"
                         #emailModel="ngModel" />
-                    <!-- ✅ Email validation message -->
-                    <small class="text-danger"
+                    <small class="text-danger d-block text-left"
                         *ngIf="formSubmitted && emailModel.errors?.['email']">
                         Please enter a valid email address.
                     </small>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input
-                        type="password"
+                <div class="form-group position-relative mt-3">
+                    <label for="password"
+                        class="d-block text-left">Password:</label>
+                    <input [type]="showPassword ? 'text' : 'password'"
                         id="password"
                         class="form-control"
                         [(ngModel)]="password"
@@ -46,17 +48,19 @@
                         placeholder="Enter your password" />
 
                     <button type="button" class="toggle-password"
-                        (click)="togglePasswordVisibility()">
+                        (click)="togglePasswordVisibility()"
+                        style="position: absolute; top: 38px; right: 10px; border: none; background: none;">
                         <i
                             [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
                     </button>
                 </div>
 
-                <button class="btn btn-success btn-block">Signup</button>
+                <button
+                    class="btn btn-success btn-block mt-4 w-100">Create
+                    Account</button>
             </form>
 
-            <!-- Sign Up Link below -->
-            <div class="signup-link mt-3">
+            <div class="signup-link mt-3 text-center">
                 <p>Already have an account? <a routerLink="/login">Login
                         here</a></p>
             </div>

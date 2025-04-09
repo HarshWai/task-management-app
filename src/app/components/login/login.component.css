@@ -23,9 +23,6 @@
     transition: transform 0.3s ease;
 }
 
-.login-card:hover {
-    transform: translateY(-4px);
-}
 
 /* Heading */
 .login-card h2 {
@@ -121,4 +118,18 @@
 .signup-link a:hover {
     text-decoration: underline;
     color: #007aff;
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4CAF50;
+    /* optional: green border */
 }
