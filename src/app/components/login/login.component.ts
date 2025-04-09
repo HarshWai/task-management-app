@@ -21,6 +21,35 @@ export class LoginComponent {
     this.errorMessage = '';
     this.showSignupButton = false;
 
+    // ✅ Custom Validations
+    if (!this.email) {
+      this.errorMessage = 'Email is required.';
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(this.email)) {
+      this.errorMessage = 'Please enter a valid email address.';
+      return;
+    }
+
+    if (!this.password) {
+      this.errorMessage = 'Password is required.';
+      return;
+    }
+
+    if (this.password.length < 8) {
+      this.errorMessage = 'Password must be at least 8 characters long.';
+      return;
+    }
+
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-={}[\]|;:'",.<>/?]).+$/;
+    if (!passwordPattern.test(this.password)) {
+      this.errorMessage = 'Password must include 1 uppercase letter, 1 number, and 1 special character.';
+      return;
+    }
+
+    // ✅ Original Logic continues
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find((u: any) => u.email === this.email && u.password === this.password);
 
@@ -41,7 +70,6 @@ export class LoginComponent {
       this.showSignupButton = true;
     }
 
-
     let existingUser = users.find((user: any) => user.email === this.email);
 
     if (!existingUser) {
@@ -50,7 +78,6 @@ export class LoginComponent {
     } else if (existingUser.password !== this.password) {
       this.errorMessage = 'Invalid email or password. Please try again.';
     } else {
-
       localStorage.setItem('loggedInUser', JSON.stringify({
         name: existingUser.name,
         email: existingUser.email,
@@ -63,6 +90,3 @@ export class LoginComponent {
     }
   }
 }
-
-
-

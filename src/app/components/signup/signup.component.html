@@ -1,54 +1,65 @@
-<div class="signup-container">
-    <div class="container">
-        <h2 class="text-center">Signup</h2>
+<div class="login-wrapper">
+    <div class="signup-container">
+        <div class="container">
+            <h2 class="text-center">Signup</h2>
 
-        <!-- Show error message if form is invalid -->
-        <span *ngIf="formSubmitted && signupForm.invalid"
-            class="alert-danger text-center d-block mb-2">
-            All fields are required.
-        </span>
+            <!-- Show error message if form is invalid -->
+            <span *ngIf="formSubmitted && signupForm.invalid"
+                class="alert-danger text-center d-block mb-2">
+                All fields are required.
+            </span>
 
-        <form (ngSubmit)="onSignup()" #signupForm="ngForm">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" name="name" class="form-control"
-                    [(ngModel)]="name" required>
+            <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="form-control"
+                        [(ngModel)]="name" required
+                        placeholder="Enter your name">
 
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    class="form-control"
-                    [(ngModel)]="email"
-                    name="email"
-                    required
-                    email
-                    #emailModel="ngModel" />
-                <!-- ✅ Email validation message -->
-                <small class="text-danger"
-                    *ngIf="formSubmitted && emailModel.errors?.['email']">
-                    Please enter a valid email address.
-                </small>
+                    <label for="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        [(ngModel)]="email"
+                        name="email"
+                        required
+                        email
+                        placeholder="Enter your email"
+                        #emailModel="ngModel" />
+                    <!-- ✅ Email validation message -->
+                    <small class="text-danger"
+                        *ngIf="formSubmitted && emailModel.errors?.['email']">
+                        Please enter a valid email address.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        class="form-control"
+                        [(ngModel)]="password"
+                        name="password"
+                        required
+                        placeholder="Enter your password" />
+
+                    <button type="button" class="toggle-password"
+                        (click)="togglePasswordVisibility()">
+                        <i
+                            [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                    </button>
+                </div>
+
+                <button class="btn btn-success btn-block">Signup</button>
+            </form>
+
+            <!-- Sign Up Link below -->
+            <div class="signup-link mt-3">
+                <p>Already have an account? <a routerLink="/login">Login
+                        here</a></p>
             </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    class="form-control"
-                    [(ngModel)]="password"
-                    name="password"
-                    required />
-            </div>
-
-            <button class="btn btn-success btn-block">Signup</button>
-        </form>
-
-        <!-- Sign Up Link below -->
-        <div class="signup-link mt-3">
-            <p>Already have an account? <a routerLink="/login">Login
-                    here</a></p>
         </div>
     </div>
 </div>

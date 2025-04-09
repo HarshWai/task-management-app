@@ -18,7 +18,7 @@ export class DashboardComponent {
   project = {
     title: '',
     description: '',
-    status: '',
+    status: 'New',
     createdBy: '',
     manager: '',
     teamMembers: '',
@@ -123,7 +123,7 @@ export class DashboardComponent {
       document.body.classList.remove('dark-mode');
     }
   }
-  goBack(): void {
+  cancel(): void {
     this.router.navigate(['/main']);
   }
 }

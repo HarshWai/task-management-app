@@ -1,114 +1,124 @@
- <div class="container-fluid mt-4">
+ <div class="container-fluid ">
 
-    <div class="card p-4 my-4">
-        <h4 class="text-center">Project List</h4>
-        <div class="row">
-            <div class="col-md-2">
+    <h4 class="text-start mb-4">Project List</h4>
+    <div class="row align-items-center gx-3 gy-2">
 
-                <select id="statusFilter" class="form-select"
-                    [(ngModel)]="selectedStatus" (change)="filterProjects()">
-                    <option value="All">All status</option>
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search projects by title..."
-                    [(ngModel)]="searchTerm"
-                    (input)="searchProjects()" />
-            </div>
-            <div class="mb-3 col-md-2">
-                <select id="sortOption" class="form-select"
-                    [(ngModel)]="selectedSortOption" (change)="sortProjects()">
-                    <option value>Select option</option>
-                    <option value="startDate">Start Date</option>
-                    <option value="title">Project Title</option>
-                </select>
-            </div>
-            <div class="mb-3 col-md-2">
-
-                <button class="btn btn-primary ms-2"
-                    (click)="toggleDateSortOrder()">
-                    Sort {{ isAscending ? 'Descending' : 'Ascending' }}
-                </button>
-            </div>
+        <!-- Search -->
+        <div class="col-md-2">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search projects by title..."
+                [(ngModel)]="searchTerm"
+                (input)="searchProjects()" />
         </div>
 
-        <table class="table table-bordered table-striped mt-4">
-            <thead class="table-dark">
-                <tr class="text-center">
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Created By</th>
-                    <th>Project Manager</th>
-                    <th>Team Member</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Due Days</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngIf="projects.length > 0">
-                    <tr *ngFor="let project of projects" class="text-center">
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.title }}</td>
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.description }}</td>
-                        <td (click)="navigateToaddtask(project.id)"
-                            [ngClass]="getStatusClass(project.status)">{{
-                            project.status }}</td>
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.createdBy }}</td>
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.manager }}</td>
+        <!-- Status Filter -->
+        <div class="col-auto">
+            <select id="statusFilter" class="form-select"
+                [(ngModel)]="selectedStatus" (change)="filterProjects()">
+                <option value="All">All status</option>
+                <option value="New">New</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
 
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.teamMembers }}</td>
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.startDate }}</td>
-                        <td
-                            (click)="navigateToaddtask(project.id)">{{
-                            project.endDate }}</td>
-                        <td>{{ getProjectDueDays(project.endDate) }} days</td>
+        <!-- Sort Option -->
+        <div class="col-auto">
+            <select id="sortOption" class="form-select"
+                [(ngModel)]="selectedSortOption" (change)="sortProjects()">
+                <option value>Select option</option>
+                <option value="startDate">Start Date</option>
+                <option value="title">Project Title</option>
+            </select>
+        </div>
 
-                        <td>
-                            <div
-                                class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <button class="btn btn-primary btn-sm"
-                                    (click)="viewProject(project)">Edit</button>
-                                <button class="btn btn-danger btn-sm"
-                                    (click)="deleteProject(project.id)">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-container>
-                <tr *ngIf="projects.length == 0">
-                    <td colspan="8">
-                        <h6 class="text-center">Curruntly no data
-                            available</h6>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="text-center">
+        <!-- Sort Order Button -->
+        <div class="col-auto">
+            <button class="btn btn-primary"
+                (click)="toggleDateSortOrder()">
+
+                {{ isAscending ? 'Descending by Start date' :
+                'Ascending by Start date' }} <i class="bi bi-funnel"></i>
+            </button>
+        </div>
+
+        <!-- Create Project Button aligned to right -->
+        <div class="col-auto ms-auto">
             <button class="btn btn-success"
-                (click)="navigateToDashboard()">Create
-                Project</button>
+                (click)="navigateToDashboard()">
+                Create Project <i class="bi bi-plus-circle"></i>
+            </button>
         </div>
 
     </div>
+
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="table-dark">
+            <tr class="text-center">
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Created By</th>
+                <th>Project Manager</th>
+                <th>Team Member</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Due Days</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="projects.length > 0">
+                <tr *ngFor="let project of projects" class="text-center">
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.title }}</td>
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.description }}</td>
+                    <td (click)="navigateToaddtask(project.id)"
+                        [ngClass]="getStatusClass(project.status)">{{
+                        project.status }}</td>
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.createdBy }}</td>
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.manager }}</td>
+
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.teamMembers }}</td>
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.startDate }}</td>
+                    <td
+                        (click)="navigateToaddtask(project.id)">{{
+                        project.endDate }}</td>
+                    <td>{{ getProjectDueDays(project.endDate) }} days</td>
+
+                    <td>
+                        <div
+                            class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button class="btn btn-primary btn-sm"
+                                (click)="viewProject(project)">Edit</button>
+                            <button class="btn btn-danger btn-sm"
+                                (click)="deleteProject(project.id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+            <tr *ngIf="projects.length == 0">
+                <td colspan="10">
+                    <h6 class="text-center">Curruntly no data
+                        available</h6>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
     <!-- Create Project Button -->
 

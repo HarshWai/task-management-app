@@ -20,6 +20,10 @@ export class TaskListComponent {
   selectedStatus: string = 'All';
   allTasks: any[] = [];
   searchTerm: string = '';
+  projectTitle: string = '';
+  projectStartDate: string = '';
+  projectEndDate: string = '';
+
   constructor(private router: Router, private route: ActivatedRoute, public navbar: UserService, public notificationService: NotificationService) {
 
   }
@@ -33,6 +37,7 @@ export class TaskListComponent {
       localStorage.setItem('selectedProjectId', this.selectedProjectId.toString());
 
       this.loadTasks();
+      this.loadProjectDetails();
       this.loadUserName();
     });
 
@@ -40,7 +45,23 @@ export class TaskListComponent {
     window.addEventListener('storage', () => this.loadTasks());
   }
 
-  // ganesh code
+  loadProjectDetails(): void {
+    const storedProjects = localStorage.getItem('projects');
+    if (storedProjects && this.selectedProjectId) {
+      const projects = JSON.parse(storedProjects);
+      const currentProject = projects.find((project: { id: number }) => project.id === this.selectedProjectId);
+      if (currentProject) {
+        this.projectTitle = currentProject.title;
+        this.projectStartDate = currentProject.startDate;
+        this.projectEndDate = currentProject.endDate;
+      } else {
+        this.projectTitle = 'Unknown Project';
+        this.projectStartDate = '';
+        this.projectEndDate = '';
+      }
+    }
+  }
+
 
 
   loadUserData(): void {

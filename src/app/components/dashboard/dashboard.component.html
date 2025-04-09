@@ -1,79 +1,105 @@
-<div class="container mt-4">
-
-    <h2 class="text-center">Create Project</h2>
+<div class="container">
+    <h2 class="text-start mb-4">Create Project</h2>
 
     <!-- Project Creation Form -->
     <form (ngSubmit)="addProject()" class="p-4 border rounded shadow">
         <div class="row g-3">
-            <div class="col-md-4">
+            <!-- Title -->
+            <div class="col-md-12">
                 <label class="form-label">Title</label>
-                <input type="text" class="form-control"
-                    [class.is-invalid]="(title.invalid && (title.touched || submitted))"
-                    [(ngModel)]="project.title" name="title" required
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="title.invalid && (title.touched || submitted)"
+                    [(ngModel)]="project.title"
+                    name="title"
+                    required
                     #title="ngModel"
-                    placeholder="Enter project title">
+                    placeholder="Enter project title" />
                 <div class="text-danger"
-                    *ngIf="title.invalid && (title.touched || submitted)">Title
-                    is required.</div>
+                    *ngIf="title.invalid && (title.touched || submitted)">
+                    Title is required.
+                </div>
             </div>
 
-            <div class="col-md-4">
+            <!-- Description -->
+            <div class="col-md-12">
                 <label class="form-label">Description</label>
-                <input type="text" class="form-control"
-                    [class.is-invalid]="(description.invalid && (description.touched || submitted))"
-                    [(ngModel)]="project.description" name="description"
-                    required #description="ngModel"
-                    placeholder="Enter project description">
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="description.invalid && (description.touched || submitted)"
+                    [(ngModel)]="project.description"
+                    name="description"
+                    required
+                    #description="ngModel"
+                    placeholder="Enter project description" />
                 <div class="text-danger"
-                    *ngIf="description.invalid && (description.touched || submitted)">Description
-                    is required.</div>
+                    *ngIf="description.invalid && (description.touched || submitted)">
+                    Description is required.
+                </div>
             </div>
 
+            <!-- Status -->
             <div class="col-md-4">
                 <label class="form-label">Status</label>
-                <select class="form-select"
-                    [class.is-invalid]="(status.invalid && (status.touched || submitted))"
-                    [(ngModel)]="project.status" name="status" required
+                <select
+                    class="form-select"
+                    [class.is-invalid]="status.invalid && (status.touched || submitted)"
+                    [(ngModel)]="project.status"
+                    name="status"
+                    required
                     #status="ngModel">
-                    <option value>Select status</option>
+                    <option value="New">New</option>
                     <option value="Pending">Pending</option>
                     <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                 </select>
                 <div class="text-danger"
-                    *ngIf="status.invalid && (status.touched || submitted)">Status
-                    is required.</div>
+                    *ngIf="status.invalid && (status.touched || submitted)">
+                    Status is required.
+                </div>
             </div>
-        </div>
 
-        <div class="row g-3 mt-2">
-            <div class="col-md-6">
+            <!-- Manager and Team Members -->
+
+            <div class="col-md-4">
                 <label class="form-label">Project Manager</label>
-                <input type="text" class="form-control"
-                    [class.is-invalid]="(manager.invalid && (manager.touched || submitted))"
-                    [(ngModel)]="project.manager" name="manager" required
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="manager.invalid && (manager.touched || submitted)"
+                    [(ngModel)]="project.manager"
+                    name="manager"
+                    required
                     #manager="ngModel"
-                    placeholder="Enter project manager name">
+                    placeholder="Enter project manager name" />
                 <div class="text-danger"
-                    *ngIf="manager.invalid && (manager.touched || submitted)">Manager
-                    name is required.</div>
+                    *ngIf="manager.invalid && (manager.touched || submitted)">
+                    Manager name is required.
+                </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label class="form-label">Team Members</label>
-                <input type="text" class="form-control"
-                    [class.is-invalid]="(teamMembers.invalid && (teamMembers.touched || submitted))"
-                    [(ngModel)]="project.teamMembers" name="teamMembers"
-                    required #teamMembers="ngModel"
-                    placeholder="Enter team members names">
+                <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="teamMembers.invalid && (teamMembers.touched || submitted)"
+                    [(ngModel)]="project.teamMembers"
+                    name="teamMembers"
+                    required
+                    #teamMembers="ngModel"
+                    placeholder="Enter team members names" />
                 <div class="text-danger"
-                    *ngIf="teamMembers.invalid && (teamMembers.touched || submitted)">Team
-                    members are required.</div>
+                    *ngIf="teamMembers.invalid && (teamMembers.touched || submitted)">
+                    Team members are required.
+                </div>
             </div>
-        </div>
 
-        <div class="row g-3 mt-2">
-            <div class="mb-3">
+            <!-- Start Date and End Date -->
+
+            <div class="col-md-3">
                 <label for="startDate" class="form-label">Start Date</label>
                 <input
                     type="date"
@@ -84,7 +110,7 @@
                     required />
             </div>
 
-            <div class="mb-3">
+            <div class="col-md-3">
                 <label for="endDate" class="form-label">End Date</label>
                 <input
                     type="date"
@@ -100,14 +126,14 @@
                     End date cannot be earlier than start date.
                 </div>
             </div>
-        </div>
 
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Create
-                Project</button>
-            <button class="btn btn-secondary mx-4"
-                (click)="goBack()">Back</button>
+            <!-- Buttons -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Create
+                    Project</button>
+                <button type="button" class="btn btn-secondary mx-4"
+                    (click)="cancel()">Cancel</button>
+            </div>
         </div>
-
     </form>
 </div>

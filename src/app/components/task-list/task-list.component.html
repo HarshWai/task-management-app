@@ -1,69 +1,78 @@
 <!-- Task List Page -->
-<div class="container-fluid mt-4">
+<div class="container-fluid">
     <!-- Task List Table -->
-    <div class="card p-4 my-4">
-        <h3 class="mt-4 text-center">Project Tasks List</h3>
-        <div class="row">
-            <div class="col-md-2">
 
-                <select id="statusFilter" class="form-select"
-                    [(ngModel)]="selectedStatus" (change)="filterProjects()">
-                    <option value="All">All status</option>
-                    <option value="Pending">Pending</option>
-                    <option value="In Progress">In Progress</option>
-                    <option value="Completed">Completed</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search projects by title..."
-                    [(ngModel)]="searchTerm"
-                    (input)="searchProjects()" />
-            </div>
+    <h3 class="mb-4 text-start">Project Tasks List</h3>
+
+    <div
+        class="project-details mb-4 p-3 border rounded bg-light d-flex align-items-center justify-content-start w-100"
+        style="gap: 1.5rem;">
+        <p class="mb-0"><strong>Project Name:</strong> {{ projectTitle }}</p>
+        <p class="mb-0"><strong>Start Date:</strong> {{ projectStartDate }}</p>
+        <p class="mb-0"><strong>End Date:</strong> {{ projectEndDate }}</p>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-md-2">
+            <select id="statusFilter" class="form-select"
+                [(ngModel)]="selectedStatus" (change)="filterProjects()">
+                <option value="All">All status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
         </div>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped mt-4">
-                <thead class="table-dark">
-                    <tr class="text-center">
-                        <th>Title</th>
-                        <th>Assigned To</th>
-                        <th>Status</th>
-                        <th>Estimate (hrs)</th>
-                        <th>Time Spent (hrs)</th>
-                        <th>Deadline</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let task of tasks" class="text-center">
-                        <td>{{ task.title }}</td>
-                        <td>{{ task.assignedTo }}</td>
-                        <td [ngClass]="getStatusClass(task.status)">{{
-                            task.status }}</td>
-                        <td>{{ convertToHoursMinutes(task.estimate) }}</td>
-                        <td>{{ convertToHoursMinutes(task.timeSpent) }}</td>
-                        <td>{{ task.deadline }}</td>
-                        <td>
-                            <div
-                                class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                <button class="btn btn-warning btn-sm"
-                                    (click)="editTask(task)">Edit</button>
-                                <button class="btn btn-danger btn-sm"
-                                    (click)="deleteTask(task.id)">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="col-md-3">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search projects by title..."
+                [(ngModel)]="searchTerm"
+                (input)="searchProjects()" />
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary mt-3"
-                (click)="navigateToAddTask()">Add Task</button>
-            <button class="btn btn-secondary mt-3 mx-4"
-                (click)="goBack()">Back</button>
+
+        <div class="col-md-2 ms-auto text-end">
+            <button class="btn btn-primary" (click)="navigateToAddTask()">
+                Add Task <i class="bi bi-plus-circle"></i>
+            </button>
         </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped mt-4">
+            <thead class="table-dark">
+                <tr class="text-center">
+                    <th>Title</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Estimate (hrs)</th>
+                    <th>Time Spent (hrs)</th>
+                    <th>Deadline</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks" class="text-center">
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.assignedTo }}</td>
+                    <td [ngClass]="getStatusClass(task.status)">{{
+                        task.status }}</td>
+                    <td>{{ convertToHoursMinutes(task.estimate) }}</td>
+                    <td>{{ convertToHoursMinutes(task.timeSpent) }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>
+                        <div
+                            class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button class="btn btn-warning btn-sm"
+                                (click)="editTask(task)">Edit</button>
+                            <button class="btn btn-danger btn-sm"
+                                (click)="deleteTask(task.id)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
