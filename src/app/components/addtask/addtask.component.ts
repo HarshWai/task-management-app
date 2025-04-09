@@ -91,7 +91,7 @@ export class AddTaskComponent {
     localStorage.removeItem('selectedTask');
 
     this.router.navigate(['/task-list', this.task.projectId]);
-    this.notificationService.show('Task saved successfully!', 'success');
+    this.notificationService.showSuccess('Task added successfully!');
   }
 
   onSubmit(form: NgForm) {
@@ -102,14 +102,7 @@ export class AddTaskComponent {
     }
   }
 
-  // toggleDarkMode(event: any) {
-  //   const isChecked = event.target.checked;
-  //   if (isChecked) {
-  //     document.body.classList.add('dark-mode');
-  //   } else {
-  //     document.body.classList.remove('dark-mode');
-  //   }
-  // }
+
 
   isDarkMode = false;
 

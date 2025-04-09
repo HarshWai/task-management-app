@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-main',
@@ -199,14 +200,49 @@ export class MainComponent {
   }
   // Delete a project
   deleteProject(projectId: number): void {
-    this.projects = this.projects.filter(project => project.id !== projectId);
-    this.notificationService.show('Project deleted successfully!', 'error');
-    localStorage.setItem('projects', JSON.stringify(this.projects));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete this project?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const storedProjects = localStorage.getItem('projects');
+
+        if (storedProjects) {
+          let projects = JSON.parse(storedProjects);
+          projects = projects.filter((project: any) => project.id !== projectId);
+
+          localStorage.setItem('projects', JSON.stringify(projects));
+
+          this.notificationService.showSuccess('Project deleted successfully!');
+          this.loadProjects();
+          this.filterProjects();
+        }
+
+        Swal.fire(
+          'Deleted!',
+          'Your project has been deleted.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your project is safe 🙂',
+          'info'
+        );
+      }
+    });
   }
+
+
   // Delete a task
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
-    this.notificationService.show('Task deleted successfully!');
+    // this.notificationService.show('Task deleted successfully!');
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 

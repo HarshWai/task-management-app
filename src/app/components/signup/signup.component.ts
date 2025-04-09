@@ -30,7 +30,7 @@ export class SignupComponent {
 
     // Check email format
     if (!this.isValidEmail(this.email)) {
-      this.notificationService.show('Enter Valid user name', 'error');
+      // this.notificationService.show('Enter Valid user name', 'error');
       return;
     }
 
@@ -39,7 +39,7 @@ export class SignupComponent {
     let userExists = users.some((user: any) => user.email === this.email);
 
     if (userExists) {
-      this.notificationService.show('User already exist', 'error');
+      // this.notificationService.show('User already exist', 'error');
     } else {
       users.push({ name: this.name, email: this.email, password: this.password });
       localStorage.setItem('users', JSON.stringify(users));

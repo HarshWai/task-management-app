@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-edit-task',
@@ -23,7 +24,7 @@ export class EditTaskComponent implements OnInit {
 
   submitted: boolean = false; // ✅ Added submitted flag
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     const storedTask = localStorage.getItem('selectedTask');
@@ -33,6 +34,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   updateTask(form: NgForm): void {
+    const selectedProjectId = localStorage.getItem('selectedProjectId');
     this.submitted = true; // ✅ Set form as submitted to show validation messages
 
     if (form.invalid) {
@@ -45,8 +47,12 @@ export class EditTaskComponent implements OnInit {
 
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.removeItem('selectedTask');
-
-    this.router.navigate(['/main']);
+    this.notificationService.showSuccess('Task Updated successfully!');
+    if (selectedProjectId) {
+      this.router.navigate(['/task-list', selectedProjectId]);
+    } else {
+      this.router.navigate(['/main']); // Fallback if no project ID found
+    }
   }
 
   goBack(): void {

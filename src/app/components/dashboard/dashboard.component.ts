@@ -76,7 +76,7 @@ export class DashboardComponent {
       localStorage.setItem('projects', JSON.stringify(projects));
       this.resetProjectForm();
       this.router.navigate(['/main']);
-      this.notificationService.show('Project created successfully!');
+      this.notificationService.showSuccess('Project created successfully!');
     }
   }
 

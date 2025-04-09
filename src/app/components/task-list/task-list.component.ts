@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { NotificationService } from '../../services/notification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-list',
@@ -147,11 +148,36 @@ export class TaskListComponent {
   }
 
   deleteTask(taskId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want to delete this task?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
 
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
-    this.notificationService.show('Task deleted successfully!', 'error');
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        this.notificationService.showError('Task deleted successfully!');
+
+        Swal.fire(
+          'Deleted!',
+          'Your task has been deleted.',
+          'success'
+        );
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your task is safe 🙂',
+          'info'
+        );
+      }
+    });
   }
+
   goBack(): void {
     this.router.navigate(['/main']);
   }

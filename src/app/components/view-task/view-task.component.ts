@@ -2,6 +2,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-view-task',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class ViewTaskComponent {
   selectedProject: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     const storedProject = localStorage.getItem('selectedProject'); // Load only selected project
@@ -49,7 +50,7 @@ export class ViewTaskComponent {
       localStorage.setItem('projects', JSON.stringify(updatedProjects));
       localStorage.setItem('selectedProject', JSON.stringify(this.selectedProject));
 
-      alert('Project updated successfully!');
+      this.notificationService.showSuccess('Project Updated successfully!');
 
       // ✅ Navigate back to 'main' after saving
       this.router.navigate(['/main']);
