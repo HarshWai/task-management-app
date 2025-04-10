@@ -1,3 +1,4 @@
+
 <div class="container">
     <h2 class="text-start mb-4">Create Project</h2>
 
@@ -79,21 +80,38 @@
                     Manager name is required.
                 </div>
             </div>
-
-            <div class="col-md-4">
+            <div class="col-md-4 position-relative">
                 <label class="form-label">Team Members</label>
                 <input
                     type="text"
                     class="form-control"
-                    [class.is-invalid]="teamMembers.invalid && (teamMembers.touched || submitted)"
-                    [(ngModel)]="project.teamMembers"
+                    [value]="project.teamMembers.join(', ')"
+                    readonly
+                    (click)="toggleDropdown()"
+                    placeholder="Select team members"
                     name="teamMembers"
-                    required
-                    #teamMembers="ngModel"
-                    placeholder="Enter team members names" />
+                    required />
+
+                <!-- Dropdown -->
+                <div
+                    class="dropdown-menu w-100 show"
+                    *ngIf="isDropdownOpen"
+                    style="max-height: 200px; overflow-y: auto; position: absolute; z-index: 1000;">
+                    <div *ngFor="let member of availableTeamMembers"
+                        class="form-check ms-2">
+                        <input
+                            type="checkbox"
+                            #checkbox
+                            [checked]="project.teamMembers.includes(member)"
+                            (change)="onTeamMemberChange(member, checkbox.checked)">
+                        <label class="form-check-label" [for]="member">{{ member
+                            }}</label>
+                    </div>
+                </div>
+
                 <div class="text-danger"
-                    *ngIf="teamMembers.invalid && (teamMembers.touched || submitted)">
-                    Team members are required.
+                    *ngIf="submitted && project.teamMembers.length === 0">
+                    Please select at least one team member.
                 </div>
             </div>
 

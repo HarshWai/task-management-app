@@ -6,7 +6,8 @@ import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [FormsModule, NgIf],
+  standalone: true,
+  imports: [FormsModule, NgIf, NgFor, NgClass],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -15,17 +16,23 @@ export class DashboardComponent {
   submitted = false;
   projects: any[] = [];
   isDarkMode = false;
+
+  // Team members list
+  availableTeamMembers: string[] = ['Alice', 'Bob', 'Charlie', 'David', 'Eve'];
+
+  // Dropdown state
+  isDropdownOpen = false;
+
   project = {
     title: '',
     description: '',
     status: 'New',
     createdBy: '',
     manager: '',
-    teamMembers: '',
+    teamMembers: [] as string[],
     startDate: '',
     endDate: '',
     dueDate: '',
-
   };
 
   constructor(private router: Router, private notificationService: NotificationService) {
@@ -45,7 +52,7 @@ export class DashboardComponent {
     localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 
-  // Add new project and navigate to the main component
+  // Add project
   addProject() {
     const storedUser = localStorage.getItem('loggedInUser');
     const user = storedUser ? JSON.parse(storedUser) : null;
@@ -55,7 +62,6 @@ export class DashboardComponent {
       return;
     }
 
-    // Validate startDate and endDate
     const startDate = new Date(this.project.startDate);
     const endDate = new Date(this.project.endDate);
 
@@ -64,22 +70,24 @@ export class DashboardComponent {
       return;
     }
 
-    if (this.project.title && this.project.manager && this.project.startDate && this.project.endDate) {
+    if (this.project.title && this.project.manager && this.project.startDate && this.project.endDate && this.project.teamMembers.length > 0) {
       const newProject = {
         ...this.project,
         id: Date.now(),
-        createdBy: user.name.trim() // ✅ Automatically assign `createdBy`
+        createdBy: user.name.trim()
       };
 
       let projects = JSON.parse(localStorage.getItem('projects') || '[]');
       projects.push(newProject);
       localStorage.setItem('projects', JSON.stringify(projects));
+
       this.resetProjectForm();
       this.router.navigate(['/main']);
       this.notificationService.showSuccess('Project created successfully!');
+    } else {
+      alert('Please fill all required fields and select at least one team member.');
     }
   }
-
 
   // Delete project
   deleteProject(id: number) {
@@ -89,8 +97,21 @@ export class DashboardComponent {
 
   // Reset form
   resetProjectForm() {
-    this.project = { title: '', description: '', status: '', createdBy: '', manager: '', teamMembers: '', startDate: '', endDate: '', dueDate: '' };
+    this.project = {
+      title: '',
+      description: '',
+      status: 'New',
+      createdBy: '',
+      manager: '',
+      teamMembers: [],
+      startDate: '',
+      endDate: '',
+      dueDate: ''
+    };
+    this.submitted = false;
   }
+
+  // Submit handler
   onSubmit(form: NgForm) {
     this.submitted = true;
 
@@ -102,18 +123,14 @@ export class DashboardComponent {
       return;
     }
 
-    if (form.valid) {
+    if (form.valid && this.project.teamMembers.length > 0) {
       this.addProject();
+    } else if (this.project.teamMembers.length === 0) {
+      alert("Please select at least one team member.");
     }
   }
 
-  // toggleDarkMode() {
-  //   document.body.classList.toggle('dark-mode');
-  // }
-
-
-
-
+  // Dark mode toggle
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
 
@@ -123,7 +140,26 @@ export class DashboardComponent {
       document.body.classList.remove('dark-mode');
     }
   }
+
+  // Cancel button
   cancel(): void {
     this.router.navigate(['/main']);
   }
+
+  // Toggle team members dropdown
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  // Handle team member selection
+  onTeamMemberChange(member: string, isChecked: boolean) {
+    if (isChecked) {
+      if (!this.project.teamMembers.includes(member)) {
+        this.project.teamMembers.push(member);
+      }
+    } else {
+      this.project.teamMembers = this.project.teamMembers.filter(m => m !== member);
+    }
+  }
+
 }
