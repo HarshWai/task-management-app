@@ -1,9 +1,10 @@
 
-<div class="container">
+<div class="container ">
     <h2 class="text-start mb-4">Create Project</h2>
 
     <!-- Project Creation Form -->
-    <form (ngSubmit)="addProject()" class="p-4 border rounded shadow">
+    <form (ngSubmit)="addProject()"
+        class="p-4 border rounded shadow projectForm">
         <div class="row g-3">
             <!-- Title -->
             <div class="col-md-12">
@@ -146,7 +147,7 @@
             </div>
 
             <!-- Buttons -->
-            <div class="text-center mt-4">
+            <div class="text-center mt-5">
                 <button type="submit" class="btn btn-primary">Create
                     Project</button>
                 <button type="button" class="btn btn-secondary mx-4"

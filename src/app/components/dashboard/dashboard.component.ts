@@ -18,7 +18,7 @@ export class DashboardComponent {
   isDarkMode = false;
 
   // Team members list
-  availableTeamMembers: string[] = ['Alice', 'Bob', 'Charlie', 'David', 'Eve'];
+  availableTeamMembers: string[] = ['Om', 'Ganesh', 'Tejas', 'Shubham', 'Piyush', 'kalyan', 'Rushikesh', 'Abhishek', 'Sarthak', 'Prasad'];
 
   // Dropdown state
   isDropdownOpen = false;
