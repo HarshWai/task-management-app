@@ -7,7 +7,7 @@ import { NotificationService } from '../../services/notification.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor, NgClass],
+  imports: [FormsModule, NgIf, NgFor],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
