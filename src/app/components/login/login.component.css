@@ -1,3 +1,5 @@
+/* Login Page Styles */
+
 /* Background Wrapper */
 .login-wrapper {
     display: flex;
@@ -22,7 +24,6 @@
     color: #ffffff;
     transition: transform 0.3s ease;
 }
-
 
 /* Heading */
 .login-card h2 {
@@ -82,13 +83,12 @@
     padding: 12px;
     width: 100%;
     transition: background 0.3s;
+    color: white;
 }
 
 .btn:hover {
     background: linear-gradient(to right, #00f2fe, #4facfe);
 }
-
-
 
 /* Error Message */
 .alert-danger {
@@ -98,38 +98,4 @@
     border-radius: 8px;
     margin-bottom: 15px;
     font-size: 14px;
-    border: 1px solid rgba(255, 77, 79, 0.3);
-}
-
-/* Signup Link */
-.signup-link {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #c7c7c7;
-}
-
-.signup-link a {
-    color: #4a90e2;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.signup-link a:hover {
-    text-decoration: underline;
-    color: #007aff;
-}
-
-.avatar-container {
-    display: flex;
-    justify-content: center;
-}
-
-.avatar-img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #4CAF50;
-    /* optional: green border */
 }
