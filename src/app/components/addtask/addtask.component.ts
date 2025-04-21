@@ -18,8 +18,8 @@ export class AddTaskComponent {
     title: '',
     assignedTo: '',
     status: 'Pending',
-    estimatedTime: '', // "HH:mm" format from input[type="time"]
-    timeSpent: '',     // "HH:mm" format from input[type="time"]
+    estimatedTime: '',
+    timeSpent: '',
     deadline: '',
     projectId: null,
     user: null
@@ -36,13 +36,13 @@ export class AddTaskComponent {
     if (storedTask) {
       this.task = JSON.parse(storedTask);
 
-      // Convert estimate "2h 30m" to "HH:mm"
+
       if (this.task.estimate) {
         const [hours, minutes] = this.task.estimate.split(' ').map((part: string) => parseInt(part));
         this.task.estimatedTime = this.formatTime(hours, minutes);
       }
 
-      // Convert timeSpent "1h 45m" to "HH:mm"
+
       if (this.task.timeSpent) {
         const [hours, minutes]: [number, number] = this.task.timeSpent.split(' ').map((part: string) => parseInt(part));
         this.task.timeSpent = this.formatTime(hours, minutes);
@@ -69,7 +69,7 @@ export class AddTaskComponent {
       return;
     }
 
-    // Convert "HH:mm" to "Xh Ym" format
+
     if (this.task.estimatedTime) {
       const [hours, minutes] = this.task.estimatedTime.split(':').map(Number);
       this.task.estimate = `${hours}h ${minutes}m`;
@@ -102,8 +102,6 @@ export class AddTaskComponent {
     }
   }
 
-
-
   isDarkMode = false;
 
   toggleDarkMode(event: any) {
@@ -116,9 +114,6 @@ export class AddTaskComponent {
     }
   }
 
-
-
-  // Helper function to format "h m" to "HH:mm"
   private formatTime(hours: number, minutes: number): string {
     const formattedHours = String(hours).padStart(2, '0');
     const formattedMinutes = String(minutes).padStart(2, '0');

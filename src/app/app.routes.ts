@@ -29,7 +29,9 @@ export const routes: Routes = [
                 { path: 'addTask', component: AddTaskComponent },
                 { path: 'task-list/:id', component: TaskListComponent },
                 { path: 'edit-task', component: EditTaskComponent },
-                { path: 'all-tasks', component: AllTaskComponent }
+                { path: 'all-tasks', component: AllTaskComponent },
+                { path: '**', redirectTo: '/welcome' }
+
             ]
     },
 
