@@ -16,7 +16,7 @@ export class AppComponent {
 
   @HostListener('window:popstate', ['$event'])
   onBackButton(event: Event) {
-    // If no user is logged in, prevent back navigation
+
     if (!localStorage.getItem('authUser')) {
       this.router.navigate(['/welcome']);
     }

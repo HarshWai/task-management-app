@@ -23,7 +23,6 @@ export class AllTaskComponent implements OnInit {
     this.tasks = storedTasks;
   }
 
-  // Optional: Get tasks by project
   getTasksForProject(projectId: number): any[] {
     return this.tasks.filter(task => task.projectId === projectId);
   }

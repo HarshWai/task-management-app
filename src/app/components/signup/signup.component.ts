@@ -19,13 +19,13 @@ export class SignupComponent {
   showPassword: boolean = false;
   constructor(private router: Router, private notificationService: NotificationService) { }
 
-  // Email format validator
+
   isValidEmail(email: string): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   }
 
-  // Password strength validator
+
   isValidPassword(password: string): boolean {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
     return passwordPattern.test(password);
@@ -37,19 +37,17 @@ export class SignupComponent {
   onSignup(): void {
     this.formSubmitted = true;
 
-    // Check if all fields are filled
     if (!this.name || !this.email || !this.password) {
       this.notificationService.showWarning('All fields are required!');
       return;
     }
 
-    // Check email format
     if (!this.isValidEmail(this.email)) {
       this.notificationService.showWarning('Enter a valid email!');
       return;
     }
 
-    // Check password format
+
     if (!this.isValidPassword(this.password)) {
       this.notificationService.showWarning('Password must be at least 6 characters long and include uppercase, lowercase, number, and special character.');
       return;

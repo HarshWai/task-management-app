@@ -1,4 +1,3 @@
-/* Notification container style */
 .notification-container {
     position: fixed;
     top: 20px;
@@ -9,7 +8,6 @@
     gap: 10px;
 }
 
-/* Base style for notification */
 .notification {
     padding: 12px 20px;
     border-radius: 6px;
@@ -24,35 +22,29 @@
     transition: opacity 0.5s, transform 0.5s;
 }
 
-/* Success (green) */
 .alert-success {
     background-color: #28a745;
 }
 
-/* Error (red) */
 .alert-danger {
     background-color: #dc3545;
 }
 
-/* Warning (yellow/orange) */
 .alert-warning {
     background-color: #ffc107;
     color: #212529;
 }
 
-/* Fade-in animation (on entry) */
 .notification.enter {
     opacity: 0;
     transform: translateY(-15px);
 }
 
-/* Fade-out animation (on exit) */
 .notification.exit {
     opacity: 0;
     transform: translateY(-15px);
 }
 
-/* Optional: Icon style */
 .notification::before {
     content: '🔔';
     font-size: 18px;

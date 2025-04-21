@@ -22,7 +22,7 @@ export class EditTaskComponent implements OnInit {
     deadline: ''
   };
 
-  submitted: boolean = false; // ✅ Added submitted flag
+  submitted: boolean = false;
 
   constructor(private router: Router, private notificationService: NotificationService) { }
 
@@ -35,10 +35,10 @@ export class EditTaskComponent implements OnInit {
 
   updateTask(form: NgForm): void {
     const selectedProjectId = localStorage.getItem('selectedProjectId');
-    this.submitted = true; // ✅ Set form as submitted to show validation messages
+    this.submitted = true;
 
     if (form.invalid) {
-      return; // ✅ Stop if form is invalid
+      return;
     }
 
     let tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
@@ -51,7 +51,7 @@ export class EditTaskComponent implements OnInit {
     if (selectedProjectId) {
       this.router.navigate(['/task-list', selectedProjectId]);
     } else {
-      this.router.navigate(['/main']); // Fallback if no project ID found
+      this.router.navigate(['/main']);
     }
   }
 
@@ -60,7 +60,7 @@ export class EditTaskComponent implements OnInit {
     if (selectedProjectId) {
       this.router.navigate(['/task-list', selectedProjectId]);
     } else {
-      this.router.navigate(['/main']); // Fallback if no project ID found
+      this.router.navigate(['/main']);
     }
   }
 }

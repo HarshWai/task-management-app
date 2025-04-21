@@ -10,12 +10,12 @@ export class TaskService {
   constructor(private notificationService: NotificationService) { }
 
   addTask(task: Task) {
-    // ...add task logic
+
     this.notificationService.notify('New task added successfully!');
   }
 
   updateTask(task: Task) {
-    // ...update task logic
+
     this.notificationService.notify('Task updated successfully!');
   }
 }

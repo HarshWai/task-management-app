@@ -1,14 +1,10 @@
-/* General Styling */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #eef2f3;
-    /* Light grayish background */
 }
 
-/* Navbar Styling */
 .navbar {
     background-color: #3e4e5e !important;
-    /* Changed navbar color */
 }
 
 .navbar-brand {
@@ -22,10 +18,8 @@ body {
 
 .nav-link.active {
     color: white !important;
-    /* Highlight active link */
 }
 
-/* Dropdown */
 .dropdown-menu {
     min-width: 120px;
     text-align: center;
@@ -40,7 +34,6 @@ body {
     color: #212529;
 }
 
-/* Table Styling */
 .table {
     background: #ffffff;
     border-radius: 5px;
@@ -66,13 +59,11 @@ body {
     background: #f6f9fc;
 }
 
-/* Hover Effect for Rows */
 .hover-effect:hover {
     cursor: pointer;
     background: #f6f9fc;
 }
 
-/* Button Styling */
 .btn {
     transition: all 0.3s ease-in-out;
 }
@@ -104,7 +95,7 @@ body {
     background-color: #218838;
 }
 
-/* Table Container with Scroll */
+
 .table-container {
     max-height: 400px;
     overflow-y: auto;
@@ -119,7 +110,7 @@ body {
     z-index: 1;
 }
 
-/* Responsive Styling */
+
 @media (max-width: 768px) {
     .table {
         display: block;

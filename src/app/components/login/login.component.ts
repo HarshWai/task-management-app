@@ -21,7 +21,6 @@ export class LoginComponent {
     this.errorMessage = '';
     this.showSignupButton = false;
 
-    // ✅ Custom Validations
     if (!this.email) {
       this.errorMessage = 'Email is required.';
       return;
@@ -49,7 +48,7 @@ export class LoginComponent {
       return;
     }
 
-    // ✅ Original Logic continues
+
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const user = users.find((u: any) => u.email === this.email && u.password === this.password);
 

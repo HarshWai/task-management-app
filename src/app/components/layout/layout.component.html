@@ -1,9 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container-fluid">
-        <!-- Branding -->
         <a class="navbar-brand fw-bold text-white" href="#">Task Management</a>
 
-        <!-- Toggle button for mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false"
@@ -11,10 +9,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Navbar links and actions -->
         <div class="collapse navbar-collapse gap-2" id="navbarNav">
 
-            <!-- Right Aligned Nav Links with Gap -->
             <ul class="navbar-nav ms-auto d-flex gap-1">
                 <li class="nav-item">
                     <a class="nav-link active" routerLink="/main">Projects</a>
@@ -24,10 +20,8 @@
                 </li>
             </ul>
 
-            <!-- Right Side Actions -->
             <div class="d-flex align-items-center gap-3">
 
-                <!-- Dark Mode Toggle -->
                 <div class="form-check form-switch text-white mb-0">
                     <input class="form-check-input" type="checkbox"
                         id="darkModeSwitch"
@@ -37,7 +31,6 @@
                     </label>
                 </div>
 
-                <!-- User Dropdown -->
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button"
                         id="userDropdown" data-bs-toggle="dropdown"
@@ -60,7 +53,6 @@
     </div>
 </nav>
 
-<!-- Router outlet for pages -->
 <div class="router-outlet-container">
     <router-outlet></router-outlet>
 </div>

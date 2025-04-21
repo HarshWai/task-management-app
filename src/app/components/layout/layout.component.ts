@@ -17,13 +17,13 @@ export class LayoutComponent {
     this.loadUserName();
   }
   loadUserName(): void {
-    const storedUser = localStorage.getItem('loggedInUser'); // 
+    const storedUser = localStorage.getItem('loggedInUser');
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      this.userName = user.name || 'Guest'; // 
-      console.log("User Name: main", this.userName); // Debugging line
+      this.userName = user.name || 'Guest';
+      console.log("User Name: main", this.userName);
     } else {
-      this.userName = 'Guest'; // Default if no user is logged in
+      this.userName = 'Guest';
     }
   }
   logout() {

@@ -1,6 +1,3 @@
-/* Signup Page Styles */
-
-/* Wrapper */
 .login-wrapper {
     display: flex;
     justify-content: center;
@@ -10,7 +7,6 @@
     padding: 20px;
 }
 
-/* Signup Container */
 .signup-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
@@ -24,14 +20,12 @@
     text-align: center;
 }
 
-/* Avatar Image */
 .avatar-img {
     width: 100px;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-/* Headings */
 .signup-container h2 {
     font-size: 28px;
     font-weight: 700;
@@ -44,7 +38,6 @@
     color: #c7c7c7;
 }
 
-/* Form Styles */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -79,14 +72,12 @@
     outline: none;
 }
 
-/* Toggle Password Icon */
 .toggle-password {
     color: #ccc;
     cursor: pointer;
     font-size: 16px;
 }
 
-/* Button */
 .btn {
     background: linear-gradient(to right, #4facfe, #00f2fe);
     border: none;
@@ -102,7 +93,6 @@
     background: linear-gradient(to right, #00f2fe, #4facfe);
 }
 
-/* Alert */
 .alert-danger {
     background: rgba(255, 77, 79, 0.15);
     color: #ff4d4f;
@@ -113,7 +103,6 @@
     text-align: center;
 }
 
-/* Signup Link */
 .signup-link a {
     color: #4facfe;
     text-decoration: underline;

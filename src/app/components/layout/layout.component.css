@@ -1,26 +1,24 @@
-/* Layout container: full height */
 :host {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-/* Navbar stays on top */
+
 .navbar {
     flex-shrink: 0;
 }
 
-/* Main content area (router-outlet) */
 .main-content {
     flex-grow: 1;
     padding: 20px;
     background-color: #f8f9fa;
-    /* light background */
+
     overflow-y: auto;
-    /* Scroll if content overflows */
+
 }
 
-/* Optional: style headings and text inside main content */
+
 .main-content h1,
 .main-content h2,
 .main-content p {
@@ -28,14 +26,12 @@
     margin-bottom: 15px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .main-content {
         padding: 15px;
     }
 }
 
-/* Toggle Switch Styling */
 .form-check-input {
     width: 3rem;
     height: 1.5rem;
@@ -52,7 +48,6 @@
     cursor: pointer;
 }
 
-/* Optional: Smooth transition */
 body {
     transition: background-color 0.3s, color 0.3s;
 }

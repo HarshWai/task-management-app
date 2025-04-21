@@ -2,11 +2,9 @@
 <div class="container ">
     <h2 class="text-start mb-4">Create Project</h2>
 
-    <!-- Project Creation Form -->
     <form (ngSubmit)="addProject()"
         class="p-4 border rounded shadow projectForm">
         <div class="row g-3">
-            <!-- Title -->
             <div class="col-md-12">
                 <label class="form-label">Title</label>
                 <input
@@ -24,7 +22,6 @@
                 </div>
             </div>
 
-            <!-- Description -->
             <div class="col-md-12">
                 <label class="form-label">Description</label>
                 <input
@@ -93,7 +90,6 @@
                     name="teamMembers"
                     required />
 
-                <!-- Dropdown -->
                 <div
                     class="dropdown-menu w-100 show"
                     *ngIf="isDropdownOpen"
@@ -115,8 +111,6 @@
                     Please select at least one team member.
                 </div>
             </div>
-
-            <!-- Start Date and End Date -->
 
             <div class="col-md-3">
                 <label for="startDate" class="form-label">Start Date</label>
@@ -146,7 +140,6 @@
                 </div>
             </div>
 
-            <!-- Buttons -->
             <div class="text-center mt-5">
                 <button type="submit" class="btn btn-primary">Create
                     Project</button>
