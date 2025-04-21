@@ -1,7 +1,7 @@
 /* Signup Page Styles */
 
-/* Background Wrapper */
-.signup-wrapper {
+/* Wrapper */
+.login-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,48 +10,52 @@
     padding: 20px;
 }
 
-/* Card Container */
-.signup-card {
+/* Signup Container */
+.signup-container {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    text-align: center;
     width: 100%;
     max-width: 400px;
     color: #ffffff;
-    transition: transform 0.3s ease;
+    text-align: center;
 }
 
-/* Heading */
-.signup-card h2 {
-    margin-bottom: 8px;
+/* Avatar Image */
+.avatar-img {
+    width: 100px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Headings */
+.signup-container h2 {
     font-size: 28px;
     font-weight: 700;
     color: #ffffff;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.signup-card .subtitle {
-    margin-bottom: 20px;
-    color: #c7c7c7;
+.signup-container p {
     font-size: 14px;
+    color: #c7c7c7;
 }
 
-/* Form Group */
+/* Form Styles */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 6px;
     color: #ddd;
     font-weight: 500;
     font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
 }
 
 .form-group input {
@@ -75,6 +79,13 @@
     outline: none;
 }
 
+/* Toggle Password Icon */
+.toggle-password {
+    color: #ccc;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 /* Button */
 .btn {
     background: linear-gradient(to right, #4facfe, #00f2fe);
@@ -84,13 +95,14 @@
     width: 100%;
     transition: background 0.3s;
     color: white;
+    font-weight: 600;
 }
 
 .btn:hover {
     background: linear-gradient(to right, #00f2fe, #4facfe);
 }
 
-/* Error Message */
+/* Alert */
 .alert-danger {
     background: rgba(255, 77, 79, 0.15);
     color: #ff4d4f;
@@ -98,4 +110,11 @@
     border-radius: 8px;
     margin-bottom: 15px;
     font-size: 14px;
+    text-align: center;
+}
+
+/* Signup Link */
+.signup-link a {
+    color: #4facfe;
+    text-decoration: underline;
 }
