@@ -55,19 +55,17 @@ export class MainComponent {
       return;
     }
 
-    // Store original list
     this.allProjects = allProjects.filter(project =>
       project.createdBy?.trim().toLowerCase() === user.name.trim().toLowerCase()
     );
 
-    // Set initial projects to show all
     this.projects = [...this.allProjects];
   }
 
 
   filterProjects(): void {
     if (this.selectedStatus === 'All') {
-      this.projects = [...this.allProjects]; // Always filter from original
+      this.projects = [...this.allProjects];
     } else {
       this.projects = this.allProjects.filter(project => project.status === this.selectedStatus);
     }
@@ -76,7 +74,7 @@ export class MainComponent {
   searchProjects(): void {
     const term = this.searchTerm.trim().toLowerCase();
     if (term === '') {
-      this.projects = [...this.allProjects]; // Reset to full list when search is cleared
+      this.projects = [...this.allProjects];
     } else {
       this.projects = this.allProjects.filter(project =>
         project.title.toLowerCase().includes(term)
@@ -92,7 +90,7 @@ export class MainComponent {
         return dateA - dateB; // Ascending order
       });
     } else if (this.selectedSortOption === 'title') {
-      this.projects.sort((a, b) => a.title.localeCompare(b.title)); // Alphabetical A-Z
+      this.projects.sort((a, b) => a.title.localeCompare(b.title));
     }
   }
 
@@ -112,16 +110,12 @@ export class MainComponent {
 
   selectProject(projectId: number): void {
     localStorage.setItem('selectedProjectId', projectId.toString());
-    // this.loadTasks();
     this.router.navigate(['/task-list', projectId]);
   }
 
   loadTasks(): void {
     const storedTasks = localStorage.getItem('tasks');
     const selectedProjectId = localStorage.getItem('selectedProjectId');
-
-    // console.log('Stored Tasks:', storedTasks);
-    // console.log('Selected Project ID:', selectedProjectId);
 
     if (!storedTasks || !selectedProjectId) {
       this.tasks = [];
@@ -154,39 +148,39 @@ export class MainComponent {
   }
 
   viewProject(project: any): void {
-    localStorage.setItem('selectedProject', JSON.stringify(project)); // Store only the selected project
+    localStorage.setItem('selectedProject', JSON.stringify(project));
     this.router.navigate(['/viewTask']);
   }
 
   loadUserName(): void {
-    const storedUser = localStorage.getItem('loggedInUser'); // 
+    const storedUser = localStorage.getItem('loggedInUser');
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      this.userName = user.name || 'Guest'; // 
-      console.log("User Name: main", this.userName); // Debugging line
+      this.userName = user.name || 'Guest';
+      console.log("User Name: main", this.userName);
     } else {
-      this.userName = 'Guest'; // Default if no user is logged in
+      this.userName = 'Guest';
     }
   }
 
   getProjectDueDays(endDate: string): number {
-    if (!endDate) return 0; // If no end date is provided, return 0
+    if (!endDate) return 0;
 
-    const today = new Date(); // Get today's date
-    const dueDate = new Date(endDate); // Convert project end date to Date object
+    const today = new Date();
+    const dueDate = new Date(endDate);
 
-    // Calculate the difference in time (milliseconds)
+
     const timeDifference = dueDate.getTime() - today.getTime();
 
-    // Convert milliseconds to days
+
     const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
-    // Return 0 if the project deadline has passed
+
     return daysRemaining >= 0 ? daysRemaining : 0;
   }
 
 
-  // Navigate to dashboard component
+
   navigateToDashboard(): void {
     this.router.navigate(['/dashboard']);
   }
@@ -198,7 +192,6 @@ export class MainComponent {
     localStorage.removeItem('loggedInUser');
     this.router.navigate(['/']);
   }
-  // Delete a project
   deleteProject(projectId: number): void {
     Swal.fire({
       title: 'Are you sure?',
@@ -239,10 +232,10 @@ export class MainComponent {
   }
 
 
-  // Delete a task
+
   deleteTask(taskId: number): void {
     this.tasks = this.tasks.filter(task => task.id !== taskId);
-    // this.notificationService.show('Task deleted successfully!');
+
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 

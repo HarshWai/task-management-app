@@ -3,7 +3,6 @@
     <h4 class="text-start mb-4">Project List</h4>
     <div class="row gx-3 gy-2 align-items-center">
 
-        <!-- Search -->
         <div class="col-12 col-sm-6 col-md-3 col-lg-2">
             <input
                 type="text"
@@ -13,7 +12,6 @@
                 (input)="searchProjects()" />
         </div>
 
-        <!-- Status Filter -->
         <div class="col-12 col-sm-6 col-md-3 col-lg-2">
             <select id="statusFilter" class="form-select"
                 [(ngModel)]="selectedStatus" (change)="filterProjects()">
@@ -25,7 +23,6 @@
             </select>
         </div>
 
-        <!-- Sort Option -->
         <div class="col-12 col-sm-6 col-md-3 col-lg-2">
             <select id="sortOption" class="form-select"
                 [(ngModel)]="selectedSortOption" (change)="sortProjects()">
@@ -35,7 +32,6 @@
             </select>
         </div>
 
-        <!-- Sort Order Button -->
         <div class="col-12 col-sm-6 col-md-3 col-lg-3">
             <button class="btn btn-primary w-100"
                 (click)="toggleDateSortOrder()">
@@ -45,7 +41,6 @@
             </button>
         </div>
 
-        <!-- Create Project Button aligned to right -->
         <div class="col-12 col-md-auto ms-md-auto text-end">
             <button class="btn btn-success w-100 w-md-auto"
                 (click)="navigateToDashboard()">
